@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using VJPlayer.ViewModels;
 
 namespace VJPlayer.Views
 {
@@ -27,10 +28,11 @@ namespace VJPlayer.Views
             InitializeComponent();
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
+            this.DataContext = new MediaViewModel(this, mediaElement);
         }
 
-        /// <summary>
-        /// Obsługa drag'n'drop, przekazuje Uri przeciągniętego pliku do mediaElement
+        /// <summary
+        /// >Obsługa drag'n'drop, przekazuje Uri przeciągniętego pliku do mediaElement.
         /// </summary>
         private void CoreWindow_Drop(object sender, DragEventArgs e)
         {
@@ -47,7 +49,6 @@ namespace VJPlayer.Views
                 System.Uri uri;
                 System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
                 mediaElement.Source = uri;
-
                 Volume = mediaElement.Volume;
             }
 
@@ -76,11 +77,6 @@ namespace VJPlayer.Views
             newWindow.Show();
         }
 
-        private void Close(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
         private void Minimize(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -106,15 +102,5 @@ namespace VJPlayer.Views
             c.BeginAnimation(Canvas.OpacityProperty, animation);
         }
 
-        /// <summary>
-        /// Wyciszenie/przywrócenie dźwięku mediaElement
-        /// </summary>
-        private void OnMute(object sender, RoutedEventArgs e)
-        {
-            if (muteButton.IsChecked.Value)
-                mediaElement.Volume = Volume;
-            else
-                mediaElement.Volume = 0;
-        }
     }
 }

@@ -20,7 +20,7 @@
         <Grid.ContextMenu>
             <ContextMenu>
                 <!--Ogarnąć MVVM i Command bo nie używa się Click-->
-                <MenuItem Header="Close" Click="Close">
+                <MenuItem Header="Close" Command="{Binding Path=CloseWindowCommand}">
                 </MenuItem>
                 <MenuItem Header="Minimize" Click="Minimize">
                 </MenuItem>
@@ -55,7 +55,7 @@
 
             <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301"/>
 
-            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Click="OnMute">
+            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}">
 
             </ToggleButton>
 
