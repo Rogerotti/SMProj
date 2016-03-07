@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\SMProj\source\VJPlayer\obj\Debug\
+G:\SMProj\source\VJPlayer\obj\Debug\
 VJPlayer
 none
 false
 DEBUG;TRACE
-D:\SMProj\source\VJPlayer\App.xaml
-1-1184938425
+G:\SMProj\source\VJPlayer\App.xaml
+1-1295603119
 
-9-306020288
-13738642453
-CoreWindow.xaml;
+14-1862994451
+14-1001767708
+Views\CoreWindow.xaml;
 
-False
+True
 
