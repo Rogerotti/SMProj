@@ -76,6 +76,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\CloseWindowCommand.cs" />
+    <Compile Include="Commands\MinimizeWindowCommand.cs" />
     <Compile Include="Commands\MuteCommand.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

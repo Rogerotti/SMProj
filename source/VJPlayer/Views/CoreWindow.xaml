@@ -15,15 +15,19 @@
         ResizeMode="CanResizeWithGrip"
         >
 
-    <Grid Background="Transparent">
+    <Grid Background="Transparent"        
+          Tag="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}">
 
         <Grid.ContextMenu>
             <ContextMenu>
                 <!--Ogarnąć MVVM i Command bo nie używa się Click-->
-                <MenuItem Header="Close" Command="{Binding Path=CloseWindowCommand}">
-                </MenuItem>
-                <MenuItem Header="Minimize" Click="Minimize">
-                </MenuItem>
+                <MenuItem Header="Close" Command="{Binding Path=CloseWindowCommand}" 
+                           CommandParameter="{Binding PlacementTarget.Tag,
+                                             RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+
+                <MenuItem Header="Minimize" Command="{Binding Path=MinimizeWindowCommand}"      
+                          CommandParameter="{Binding PlacementTarget.Tag,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+
 
                 <Separator/>
 
@@ -55,7 +59,7 @@
 
             <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301"/>
 
-            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}">
+            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
 
             </ToggleButton>
 

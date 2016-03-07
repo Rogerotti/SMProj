@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using VJPlayer.ViewModels;
 
 namespace VJPlayer.Views
@@ -21,14 +10,12 @@ namespace VJPlayer.Views
     /// </summary>
     public partial class CoreWindow : Window
     {
-        double Volume;
-
         public CoreWindow()
         {
             InitializeComponent();
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
-            this.DataContext = new MediaViewModel(this, mediaElement);
+            this.DataContext = new MediaViewModel();
         }
 
         /// <summary
@@ -49,7 +36,6 @@ namespace VJPlayer.Views
                 System.Uri uri;
                 System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
                 mediaElement.Source = uri;
-                Volume = mediaElement.Volume;
             }
 
         }
@@ -75,11 +61,6 @@ namespace VJPlayer.Views
         {
             CoreWindow newWindow = new CoreWindow();
             newWindow.Show();
-        }
-
-        private void Minimize(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
         }
 
         /// <summary>

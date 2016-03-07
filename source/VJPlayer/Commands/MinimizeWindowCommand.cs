@@ -4,21 +4,21 @@ using System.Windows.Input;
 
 namespace VJPlayer.Commands
 {
-    public class CloseWindowCommand : ICommand
+    public class MinimizeWindowCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
-            var currentWindow = parameter as Window;
-            return currentWindow != null;
+            var window = parameter as Window;
+            return window != null;
         }
 
         public void Execute(object parameter)
         {
-            var currentWindow = parameter as Window;
-            if (currentWindow != null)
-                currentWindow.Close();
+            var window = parameter as Window;
+            if(window != null)
+                window.WindowState = WindowState.Minimized;
         }
     }
 }
