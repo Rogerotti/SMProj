@@ -1,15 +1,4 @@
 G:\SMProj\source\VJPlayer\bin\Debug\VJPlayer.exe.config
-G:\SMProj\Output\VJPlayer.exe.config
-G:\SMProj\Output\VJPlayer.exe
-G:\SMProj\Output\VJPlayer.pdb
-G:\SMProj\source\VJPlayer\obj\Debug\App.g.cs
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.cache
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.lref
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.g.resources
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
-G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
 D:\SMProj\Output\VJPlayer.exe.config
 D:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
 D:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
@@ -37,6 +26,17 @@ C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\
 C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
 C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
 C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
-G:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
-G:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
+G:\SMProj\Output\VJPlayer.exe.config
+G:\SMProj\Output\VJPlayer.exe
+G:\SMProj\Output\VJPlayer.pdb
 G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csprojResolveAssemblyReference.cache
+G:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
+G:\SMProj\source\VJPlayer\obj\Debug\App.g.cs
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.cache
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.lref
+G:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.g.resources
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
+G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb

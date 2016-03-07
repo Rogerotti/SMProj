@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Input;
-using VJPlayer.ViewModels;
 
 namespace VJPlayer.Commands
 {
@@ -9,20 +8,17 @@ namespace VJPlayer.Commands
     {
         public event EventHandler CanExecuteChanged;
 
-        private readonly MediaViewModel viewModel;
-        public MuteCommand(MediaViewModel viewModel)
-        {
-            this.viewModel = viewModel;
-        }
-
         public bool CanExecute(object parameter)
         {
-            return viewModel != null;
+            var mediaElement = parameter as MediaElement;
+            return mediaElement != null;
         }
 
         public void Execute(object parameter)
         {
-            viewModel.Mute();
+            var mediaElement = parameter as MediaElement;
+            if(mediaElement != null)
+                mediaElement.IsMuted = !mediaElement.IsMuted;
         }
     }
 }

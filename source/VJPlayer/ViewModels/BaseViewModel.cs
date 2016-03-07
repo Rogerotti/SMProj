@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Windows;
 using System.Windows.Input;
 using VJPlayer.Commands;
 
@@ -11,6 +10,17 @@ namespace VJPlayer.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         private ICommand closeWindowCommand;
+        private ICommand minimizeWindowCommand;
+        public ICommand MinimizeWindowCommand
+        {
+            get { return minimizeWindowCommand; }
+            set
+            {
+                minimizeWindowCommand = value;
+                OnPropertyChanged("MinimizeWindowCommand");
+            }
+        }
+
         public ICommand CloseWindowCommand
         {
             get { return closeWindowCommand; }
@@ -22,11 +32,10 @@ namespace VJPlayer.ViewModels
 
         }
 
-        private readonly Window window;
-        public BaseViewModel(Window window)
+        public BaseViewModel()
         {
-            this.window = window;
-            CloseWindowCommand = new CloseWindowCommand(this);
+            CloseWindowCommand = new CloseWindowCommand();
+            MinimizeWindowCommand = new MinimizeWindowCommand();
         }
 
         protected virtual void OnPropertyChanged(String propertyName)
@@ -36,9 +45,5 @@ namespace VJPlayer.ViewModels
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void CloseWindow()
-        {
-            window.Close();
-        }
     }
 }
