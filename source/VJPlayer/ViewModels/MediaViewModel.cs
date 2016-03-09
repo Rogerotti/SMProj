@@ -15,7 +15,6 @@ namespace VJPlayer.ViewModels
                 muteCommand = value;
                 OnPropertyChanged("MuteCommand");
             }
-
         }
 
         public MediaViewModel()

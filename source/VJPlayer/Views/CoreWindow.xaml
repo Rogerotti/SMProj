@@ -20,7 +20,6 @@
 
         <Grid.ContextMenu>
             <ContextMenu>
-                <!--Ogarnąć MVVM i Command bo nie używa się Click-->
                 <MenuItem Header="Close" Command="{Binding Path=CloseWindowCommand}" 
                            CommandParameter="{Binding PlacementTarget.Tag,
                                              RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
@@ -28,11 +27,11 @@
                 <MenuItem Header="Minimize" Command="{Binding Path=MinimizeWindowCommand}"      
                           CommandParameter="{Binding PlacementTarget.Tag,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
 
-
                 <Separator/>
 
-                <MenuItem Header="Spawn New Window" Click="OnSpawnClick">
-                </MenuItem>
+                <MenuItem Header="Spawn New Window" Command="{Binding Path=SpawnNewWindowCommand}"      
+                          CommandParameter="{Binding PlacementTarget.Tag,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
+
             </ContextMenu>
         </Grid.ContextMenu>
 
