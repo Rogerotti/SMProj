@@ -55,15 +55,6 @@ namespace VJPlayer.Views
         }
 
         /// <summary>
-        /// Tworzy nowe okno
-        /// </summary>
-        private void OnSpawnClick(object sender, RoutedEventArgs e)
-        {
-            CoreWindow newWindow = new CoreWindow();
-            newWindow.Show();
-        }
-
-        /// <summary>
         /// Wywołanie animacji (fade-in) przy najechaniu kursorem na kontrolki
         /// </summary>
         private void MediaControlsCanvas_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)

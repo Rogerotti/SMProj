@@ -11,6 +11,8 @@ namespace VJPlayer.ViewModels
 
         private ICommand closeWindowCommand;
         private ICommand minimizeWindowCommand;
+        private ICommand spawnNewWindowCommand;
+
         public ICommand MinimizeWindowCommand
         {
             get { return minimizeWindowCommand; }
@@ -29,13 +31,23 @@ namespace VJPlayer.ViewModels
                 closeWindowCommand = value;
                 OnPropertyChanged("CloseWindowCommand");
             }
+        }
 
+        public ICommand SpawnNewWindowCommand
+        {
+            get { return spawnNewWindowCommand; }
+            set
+            {
+                spawnNewWindowCommand = value;
+                OnPropertyChanged("SpawnNewWindowCommand");
+            }
         }
 
         public BaseViewModel()
         {
             CloseWindowCommand = new CloseWindowCommand();
             MinimizeWindowCommand = new MinimizeWindowCommand();
+            SpawnNewWindowCommand = new SpawnNewWindowCommand();
         }
 
         protected virtual void OnPropertyChanged(String propertyName)
