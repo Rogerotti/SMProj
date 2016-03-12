@@ -40,3 +40,4 @@ G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
 G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
 D:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
 D:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
+C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csprojResolveAssemblyReference.cache
