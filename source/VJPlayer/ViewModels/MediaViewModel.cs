@@ -1,10 +1,13 @@
 ﻿using System.Windows.Input;
 using VJPlayer.Commands;
+using VJPlayer.Models;
 
 namespace VJPlayer.ViewModels
 {
     public class MediaViewModel : BaseViewModel
     {
+        public MediaModel MediaModel { get; set; }
+
         private ICommand muteCommand;
        
         public ICommand MuteCommand
@@ -19,6 +22,7 @@ namespace VJPlayer.ViewModels
 
         public MediaViewModel()
         {
+            MediaModel = new MediaModel();
             MuteCommand = new MuteCommand();
         }
     }

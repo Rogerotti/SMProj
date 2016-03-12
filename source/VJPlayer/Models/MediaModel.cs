@@ -15,5 +15,7 @@ namespace VJPlayer.Models
 
         public Boolean IsMuted { get; set; }
 
+        public Boolean IsPlaying { get; set; }
+
     }
 }
