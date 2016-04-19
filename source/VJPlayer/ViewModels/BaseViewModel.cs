@@ -19,7 +19,7 @@ namespace VJPlayer.ViewModels
             set
             {
                 minimizeWindowCommand = value;
-                OnPropertyChanged("MinimizeWindowCommand");
+                OnPropertyChanged(nameof(MinimizeWindowCommand));
             }
         }
 
@@ -29,7 +29,7 @@ namespace VJPlayer.ViewModels
             set
             {
                 closeWindowCommand = value;
-                OnPropertyChanged("CloseWindowCommand");
+                OnPropertyChanged(nameof(CloseWindowCommand));
             }
         }
 
@@ -39,7 +39,7 @@ namespace VJPlayer.ViewModels
             set
             {
                 spawnNewWindowCommand = value;
-                OnPropertyChanged("SpawnNewWindowCommand");
+                OnPropertyChanged(nameof(SpawnNewWindowCommand));
             }
         }
 

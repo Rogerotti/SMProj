@@ -42,7 +42,8 @@
             Text="Drop content here"
             />
 
-        <MediaElement x:Name="mediaElement"/>
+        <MediaElement x:Name="mediaElement"
+                      LoadedBehavior="Manual"/>
 
         <Canvas HorizontalAlignment="Left"
                 Width="525"

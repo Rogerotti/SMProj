@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using VJPlayer.Models;
 
 namespace VJPlayer.Commands
 {
-    public class PlayCommand : ICommand
+    public class StopCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
+        private MediaModel mediaModel;
+        public StopCommand(MediaModel mediaModel)
+        {
+            this.mediaModel = mediaModel;
+        }
 
         public bool CanExecute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
-            return mediaElement != null && mediaElement.Source != null;
+            return mediaElement != null && mediaElement.Source != null && mediaModel.IsPlaying;
         }
 
         public void Execute(object parameter)
@@ -27,10 +29,8 @@ namespace VJPlayer.Commands
             var mediaElement = parameter as MediaElement;
             if (mediaElement != null)
             {
-                mediaElement.Play();
-                
-                //mediaPlayerIsPlaying = true; //trzeba ustawić tu model w viewmodel jakoś
-            }
+                mediaElement.Stop();
+                mediaModel.IsPlaying = false;            }
         }
     }
 }

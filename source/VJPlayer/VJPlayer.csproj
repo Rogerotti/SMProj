@@ -80,6 +80,7 @@
     <Compile Include="Commands\MuteCommand.cs" />
     <Compile Include="Commands\PlayCommand.cs" />
     <Compile Include="Commands\SpawnNewWindowCommand.cs" />
+    <Compile Include="Commands\StopCommand.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />

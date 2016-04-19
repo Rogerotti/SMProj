@@ -36,6 +36,7 @@ namespace VJPlayer.Views
                 System.Uri uri;
                 System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
                 mediaElement.Source = uri;
+                mediaElement.Play();
             }
 
         }

@@ -9,14 +9,36 @@ namespace VJPlayer.ViewModels
         public MediaModel MediaModel { get; set; }
 
         private ICommand muteCommand;
-       
+        private ICommand playCommand;
+        private ICommand stopCommand;
+
         public ICommand MuteCommand
         {
             get { return muteCommand; }
             set
             {
                 muteCommand = value;
-                OnPropertyChanged("MuteCommand");
+                OnPropertyChanged(nameof(MuteCommand));
+            }
+        }
+
+        public ICommand PlayCommand
+        {
+            get { return playCommand; }
+            set
+            {
+                playCommand = value;
+                OnPropertyChanged(nameof(PlayCommand));
+            }
+        }
+
+        public ICommand StopCommand
+        {
+            get { return stopCommand; }
+            set
+            {
+                stopCommand = value;
+                OnPropertyChanged(nameof(stopCommand));
             }
         }
 
@@ -24,6 +46,7 @@ namespace VJPlayer.ViewModels
         {
             MediaModel = new MediaModel();
             MuteCommand = new MuteCommand();
+            StopCommand = new StopCommand();
         }
     }
 }
