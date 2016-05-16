@@ -13,6 +13,7 @@ namespace VJPlayer.Commands
             remove { CommandManager.RequerySuggested -= value; }
         }
         private MediaModel mediaModel;
+
         public StopCommand(MediaModel mediaModel)
         {
             this.mediaModel = mediaModel;
@@ -30,7 +31,8 @@ namespace VJPlayer.Commands
             if (mediaElement != null)
             {
                 mediaElement.Stop();
-                mediaModel.IsPlaying = false;            }
+                mediaModel.IsPlaying = false;
+            }
         }
     }
 }

@@ -17,8 +17,7 @@ namespace VJPlayer.Commands
         public void Execute(object parameter)
         {
             var currentWindow = parameter as Window;
-            if (currentWindow != null)
-                currentWindow.Close();
+            currentWindow.Close();
         }
     }
 }

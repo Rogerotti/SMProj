@@ -4,6 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VJPlayer.Views"
+        xmlns:ic="clr-namespace:VJPlayer.Commands"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:galasoft="GalaSoft.MvvmLight.Platform"
+        xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="VJPlayer"
         Width="525"
@@ -13,7 +18,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-        >
+       
+    >
 
     <Grid Background="Transparent"        
           Tag="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}">
@@ -64,13 +70,20 @@
             <Button x:Name="stopButton" Content="Stop" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
-
-            <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301"/>
-
-            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
-
+            <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
+                
+            </Slider>
+                <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+                
             </ToggleButton>
-
+         
         </Canvas>
     </Grid>
+    <wi:Interaction.Triggers>
+        <wi:EventTrigger EventName="Drop">
+            <ei:CallMethodAction
+            TargetObject="{Binding}"
+            MethodName="DropEvent"/>
+        </wi:EventTrigger>
+    </wi:Interaction.Triggers>
 </Window>

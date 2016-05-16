@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VJPlayer.Models
 {
@@ -13,9 +9,9 @@ namespace VJPlayer.Models
 
         public Double Volume { get; set; }
 
-        public Boolean IsMuted { get; set; }
-
         public Boolean IsPlaying { get; set; }
+
+        public Boolean UserIsDraggingSlider { get; set; }
 
     }
 }

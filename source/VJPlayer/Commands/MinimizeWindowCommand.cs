@@ -17,8 +17,7 @@ namespace VJPlayer.Commands
         public void Execute(object parameter)
         {
             var window = parameter as Window;
-            if(window != null)
-                window.WindowState = WindowState.Minimized;
+            window.WindowState = WindowState.Minimized;
         }
     }
 }
