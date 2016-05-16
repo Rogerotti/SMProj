@@ -10,6 +10,7 @@ namespace VJPlayer.ViewModels
 
         private ICommand muteCommand;
         private ICommand playCommand;
+        private ICommand pauseCommand;
         private ICommand stopCommand;
         private ICommand thumbDragCompletedCommand;
         private ICommand sliderUpdateCommand;
@@ -22,6 +23,16 @@ namespace VJPlayer.ViewModels
             {
                 muteCommand = value;
                 OnPropertyChanged(nameof(MuteCommand));
+            }
+        }
+
+        public ICommand PauseCommand
+        {
+            get { return pauseCommand; }
+            set
+            {
+                pauseCommand = value;
+                OnPropertyChanged(nameof(PauseCommand));
             }
         }
 
@@ -75,20 +86,17 @@ namespace VJPlayer.ViewModels
             }
         }
 
-        public void DropEvent()
-        {
-            MediaModel.IsPlaying = true;
-        }
-
         public MediaViewModel()
         {
             MediaModel = new MediaModel();
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);
+            PauseCommand = new PauseCommand(MediaModel);
             PlayCommand = new PlayCommand(MediaModel);
             SliderUpdateCommand = new SliderUpdateCommand(MediaModel);
             ThumbDragStartedCommand = new ThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new ThumbDragCompletedCommand(MediaModel);
         }
+
     }
 }

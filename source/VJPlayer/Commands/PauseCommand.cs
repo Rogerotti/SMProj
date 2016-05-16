@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using VJPlayer.Models;
 
 namespace VJPlayer.Commands
 {
-    public class StopCommand : ICommand
+    public class PauseCommand : ICommand
     {
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
         }
+
         private MediaModel mediaModel;
 
-        public StopCommand(MediaModel mediaModel)
+        public PauseCommand(MediaModel mediaModel)
         {
             this.mediaModel = mediaModel;
         }
@@ -28,8 +33,9 @@ namespace VJPlayer.Commands
         public void Execute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
-            mediaElement.Stop();
+            mediaElement.Pause();
             mediaModel.IsPlaying = false;
+
         }
     }
 }

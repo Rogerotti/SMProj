@@ -61,10 +61,14 @@ namespace VJPlayer.Views
                 System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
                 mediaElement.Source = uri;
                 var viewModel = (MediaViewModel)DataContext;
-                viewModel.PlayCommand.Execute(mediaElement);
-            }
 
+                if (viewModel.PlayCommand.CanExecute(mediaElement))
+                    viewModel.PlayCommand.Execute(mediaElement);
+
+            }
+            Focus();
         }
+
 
         /// <summary>
         /// Umożliwia przeciąganie okna bez ramek lewym przyciskiem myszy
@@ -102,6 +106,7 @@ namespace VJPlayer.Views
 
         private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            //TODO czas filmu
         }
 
         private void sliderDragCompleted(object sender, RoutedEventArgs e)
@@ -119,6 +124,24 @@ namespace VJPlayer.Views
         {
             var viewModel = (MediaViewModel)DataContext;
             viewModel.ThumbDragStartedCommand.Execute(null);
+        }
+
+        private void playButtonClick(object sender, RoutedEventArgs e)
+        {
+            playButton.Visibility = Visibility.Collapsed;
+            pauseButton.Visibility = Visibility.Visible;
+        }
+
+        private void pauseButtonClick(object sender, RoutedEventArgs e)
+        {
+            pauseButton.Visibility = Visibility.Collapsed;
+            playButton.Visibility = Visibility.Visible;
+        }
+
+        private void stopButtonClick(object sender, RoutedEventArgs e)
+        {
+            pauseButton.Visibility = Visibility.Collapsed;
+            playButton.Visibility = Visibility.Visible;
         }
     }
 }

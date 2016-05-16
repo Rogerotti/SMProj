@@ -23,7 +23,7 @@ namespace VJPlayer.Commands
         public bool CanExecute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
-            return mediaElement != null && mediaElement.Source != null && !mediaModel.IsPlaying;
+            return mediaElement != null && mediaElement.Source != null;
         }
 
         public void Execute(object parameter)
@@ -31,7 +31,6 @@ namespace VJPlayer.Commands
             var mediaElement = parameter as MediaElement;
             mediaElement.Play();
             mediaModel.IsPlaying = true;
-         
         }
     }
 }
