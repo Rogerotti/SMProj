@@ -108,9 +108,19 @@ namespace VJPlayer.Views
             c.BeginAnimation(Canvas.OpacityProperty, animation);
         }
 
-        private void SliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void SliderValueChanged(object sender, EventArgs e)
         {
             //TODO czas filmu
+        }
+
+        private void LowerLoopSliderValueChanged(object sender, EventArgs e)
+        {
+            //TODO dolny loop, ustawienie
+        }
+
+        private void UpperLoopSliderValueChanged(object sender, EventArgs e)
+        {
+            //TODO gorny loop, ustawienie
         }
 
         private void sliderDragCompleted(object sender, RoutedEventArgs e)

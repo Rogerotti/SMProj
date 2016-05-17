@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VJPlayer.Views"
+        xmlns:uc="clr-namespace:VJPlayer.Views.CustomUserControls"
         xmlns:ic="clr-namespace:VJPlayer.Commands"
-         xmlns:converters="clr-namespace:VJPlayer.Converters"
+        xmlns:converters="clr-namespace:VJPlayer.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:galasoft="GalaSoft.MvvmLight.Platform"
         xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -81,10 +82,14 @@
             <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" Canvas.Left="470" Canvas.Top="3" Width="40" >
                 
             </ToggleButton>
-            <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
+            
+            <!--<Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
                 
-            </Slider>
-                <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            </Slider>-->
+
+            <uc:ThreeThumbSlider x:Name="slider" Minimum="0" Maximum="100" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted" LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" Canvas.Left="112" Canvas.Top="3" Width="301"/>
+
+            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
                 
             </ToggleButton>
          
