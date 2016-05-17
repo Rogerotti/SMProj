@@ -97,6 +97,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\CloseWindowCommand.cs" />
+    <Compile Include="Commands\LoopCommand.cs" />
+    <Compile Include="Commands\ToogleLoopCommand.cs" />
     <Compile Include="Commands\MinimizeWindowCommand.cs" />
     <Compile Include="Commands\MuteCommand.cs" />
     <Compile Include="Commands\PauseCommand.cs" />
@@ -106,6 +108,8 @@
     <Compile Include="Commands\StopCommand.cs" />
     <Compile Include="Commands\ThumbDragCompletedCommand.cs" />
     <Compile Include="Commands\ThumbDragStartedCommand.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\NegativeBoolToVisibilityConverter.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />

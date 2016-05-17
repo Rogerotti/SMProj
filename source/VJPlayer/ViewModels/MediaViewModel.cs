@@ -1,4 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.ComponentModel;
+using System.Windows.Controls;
+using System.Windows.Input;
 using VJPlayer.Commands;
 using VJPlayer.Models;
 
@@ -6,7 +9,10 @@ namespace VJPlayer.ViewModels
 {
     public class MediaViewModel : BaseViewModel
     {
-        public MediaModel MediaModel { get; set; }
+
+        public MediaModel MediaModel;
+
+        public EventHandler ManageMediaEndEvent;
 
         private ICommand muteCommand;
         private ICommand playCommand;
@@ -15,6 +21,17 @@ namespace VJPlayer.ViewModels
         private ICommand thumbDragCompletedCommand;
         private ICommand sliderUpdateCommand;
         private ICommand thumbDragStartedCommand;
+        private ICommand loopCommand;
+
+        public ICommand LoopCommand
+        {
+            get { return loopCommand; }
+            set
+            {
+                loopCommand = value;
+                OnPropertyChanged(nameof(LoopCommand));
+            }
+        }
 
         public ICommand MuteCommand
         {
@@ -93,10 +110,20 @@ namespace VJPlayer.ViewModels
             StopCommand = new StopCommand(MediaModel);
             PauseCommand = new PauseCommand(MediaModel);
             PlayCommand = new PlayCommand(MediaModel);
+            LoopCommand = new ToogleLoopCommand(MediaModel);
             SliderUpdateCommand = new SliderUpdateCommand(MediaModel);
             ThumbDragStartedCommand = new ThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new ThumbDragCompletedCommand(MediaModel);
+            ManageMediaEndEvent = new EventHandler(ManageMediaEnd);
         }
 
+        private void ManageMediaEnd(object sender, EventArgs args)
+        {
+            var mediaElement = sender as MediaElement;
+            StopCommand.Execute(mediaElement);
+            if (MediaModel.Loop)
+                PlayCommand.Execute(mediaElement);
+            OnPropertyChanged(nameof(MediaModel));
+        }
     }
 }

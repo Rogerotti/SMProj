@@ -5,6 +5,7 @@ using VJPlayer.ViewModels;
 using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 using System;
+using System.Windows.Input;
 
 namespace VJPlayer.Views
 {
@@ -63,9 +64,12 @@ namespace VJPlayer.Views
                 var viewModel = (MediaViewModel)DataContext;
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
+                {
                     viewModel.PlayCommand.Execute(mediaElement);
-
+                    playButtonClick(this, null);
+                }
             }
+            CommandManager.InvalidateRequerySuggested();
             Focus();
         }
 
@@ -142,6 +146,12 @@ namespace VJPlayer.Views
         {
             pauseButton.Visibility = Visibility.Collapsed;
             playButton.Visibility = Visibility.Visible;
+        }
+
+        private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            viewModel.ManageMediaEndEvent.Invoke(mediaElement, EventArgs.Empty);
         }
     }
 }

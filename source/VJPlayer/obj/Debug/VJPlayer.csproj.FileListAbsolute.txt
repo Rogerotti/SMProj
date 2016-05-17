@@ -55,3 +55,4 @@ H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
 H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
 H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.exe
 H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.pdb
+H:\sm projekt\source\VJPlayer\obj\Debug\GeneratedInternalTypeHelper.g.cs

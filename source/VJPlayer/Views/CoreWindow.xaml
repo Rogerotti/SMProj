@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VJPlayer.Views"
         xmlns:ic="clr-namespace:VJPlayer.Commands"
+         xmlns:converters="clr-namespace:VJPlayer.Converters"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:galasoft="GalaSoft.MvvmLight.Platform"
         xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -18,8 +19,12 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-        FocusManager.FocusedElement="{Binding RelativeSource={x:Static RelativeSource.Self}, Mode=OneTime}"
     >
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
+        <converters:NegativeBoolToVisibilityConverter x:Key="NegativeBoolToVisibilityConverter"></converters:NegativeBoolToVisibilityConverter>
+    </Window.Resources>
+    
 
     <Grid Background="Transparent"        
           Tag="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}">
@@ -49,7 +54,8 @@
             />
 
         <MediaElement x:Name="mediaElement"
-                      LoadedBehavior="Manual"/>
+                      LoadedBehavior="Manual"
+                      MediaEnded="mediaElement_MediaEnded"/>
 
         <Canvas
                 HorizontalAlignment="Left"
@@ -60,7 +66,7 @@
                 MouseEnter="MediaControlsCanvas_MouseEnter"
                 MouseLeave="MediaControlsCanvas_MouseLeave">
 
-            <Button x:Name="playButton" Content="Play" Click="playButtonClick"  Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            <Button x:Name="playButton" Content="Play" Click="playButtonClick"  Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.isPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
@@ -68,9 +74,13 @@
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <Button x:Name="stopButton" Content="Stop" Click="stopButtonClick" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            <Button x:Name="stopButton" Content="Stop" Click="stopButtonClick" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.isPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
+
+            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" Canvas.Left="470" Canvas.Top="3" Width="40" >
+                
+            </ToggleButton>
             <Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
                 
             </Slider>
