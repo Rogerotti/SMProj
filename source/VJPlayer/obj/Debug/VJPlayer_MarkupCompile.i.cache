@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-H:\sm projekt\source\VJPlayer\obj\Debug\
+C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\
 VJPlayer
 none
 false
 DEBUG;TRACE
-H:\sm projekt\source\VJPlayer\App.xaml
-1-1295603119
+C:\Users\J\Documents\SMProj\source\VJPlayer\App.xaml
+2-2093263713
 
-26-1984637958
-711208061273
-Views\CoreWindow.xaml;
+271796889563
+71-508177105
+Views\CoreWindow.xaml;Views\CustomUserControls\ThreeThumSlider.xaml;
 
 True
 

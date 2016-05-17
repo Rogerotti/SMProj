@@ -116,6 +116,9 @@
     <Compile Include="Views\CoreWindow.xaml.cs">
       <DependentUpon>CoreWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomUserControls\ThreeThumSlider.xaml.cs">
+      <DependentUpon>ThreeThumSlider.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -165,6 +168,10 @@
     <Page Include="Views\CoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomUserControls\ThreeThumSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
