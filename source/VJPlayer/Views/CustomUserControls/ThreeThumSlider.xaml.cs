@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace VJPlayer.Views.CustomUserControls
+{
+    /// <summary>
+    /// Interaction logic for ThreeThumbSlider.xaml
+    /// </summary>
+    public partial class ThreeThumbSlider : UserControl
+    {
+        public event EventHandler LowerValueChanged;
+        public event EventHandler MiddleValueChanged;
+        public event EventHandler UpperValueChanged;
+
+        public ThreeThumbSlider()
+        {
+            InitializeComponent();
+            Loaded += Slider_Loaded;
+
+        }
+
+        void Slider_Loaded(object sender, RoutedEventArgs e)
+        {
+            LowerSlider.ValueChanged += LowerSlider_ValueChanged;
+            UpperSlider.ValueChanged += UpperSlider_ValueChanged;
+            MiddleSlider.ValueChanged += MiddleSlider_ValueChanged;
+        }
+
+        public void LowerSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MiddleSlider.Value = Math.Max(MiddleSlider.Value, LowerSlider.Value);
+            LowerValueChanged(this, e);
+        }
+
+        public void UpperSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            MiddleSlider.Value = Math.Min(MiddleSlider.Value, UpperSlider.Value);
+            UpperValueChanged(this, e);
+        }
+
+        public void MiddleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            LowerSlider.Value = Math.Min(MiddleSlider.Value, LowerSlider.Value);
+            UpperSlider.Value = Math.Max(UpperSlider.Value, MiddleSlider.Value);
+            MiddleValueChanged(this, e);
+        }
+
+        public double Minimum
+        {
+            get { return (double)GetValue(MinimumProperty); }
+            set { SetValue(MinimumProperty, value); }
+        }
+
+        public static readonly DependencyProperty MinimumProperty =
+            DependencyProperty.Register("Minimum", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(0d));
+
+        public double LowerValue
+        {
+            get { return (double)GetValue(LowerValueProperty); }
+            set { SetValue(LowerValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty LowerValueProperty =
+            DependencyProperty.Register("LowerValue", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(0d));
+
+        public double UpperValue
+        {
+            get { return (double)GetValue(UpperValueProperty); }
+            set { SetValue(UpperValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty UpperValueProperty =
+            DependencyProperty.Register("UpperValue", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(0d));
+
+        public double MiddleValue
+        {
+            get { return (double)GetValue(MiddleValueProperty); }
+            set { SetValue(MiddleValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty MiddleValueProperty =
+            DependencyProperty.Register("MiddleValue", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(0d));
+
+        public double Maximum
+        {
+            get { return (double)GetValue(MaximumProperty); }
+            set { SetValue(MaximumProperty, value); }
+        }
+
+        public static readonly DependencyProperty MaximumProperty =
+            DependencyProperty.Register("Maximum", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(1d));
+
+    }
+}
