@@ -35,7 +35,9 @@ namespace VJPlayer.Models
 
         private void NotifyPropertyChanged(string info)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(info));
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler.Invoke(this, new PropertyChangedEventArgs(info));
         }
     }
 }

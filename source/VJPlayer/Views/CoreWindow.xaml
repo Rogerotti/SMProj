@@ -66,15 +66,15 @@
                 MouseEnter="MediaControlsCanvas_MouseEnter"
                 MouseLeave="MediaControlsCanvas_MouseLeave">
 
-            <Button x:Name="playButton" Content="Play" Click="playButtonClick"  Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.isPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
+            <Button x:Name="playButton" Content="Play" Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <Button x:Name="pauseButton" Content="Pause" Click="pauseButtonClick"  Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            <Button x:Name="pauseButton" Content="Pause" Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <Button x:Name="stopButton" Content="Stop" Click="stopButtonClick" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.isPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Button x:Name="stopButton" Content="Stop" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" >
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 

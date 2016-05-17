@@ -10,7 +10,7 @@ namespace VJPlayer.ViewModels
     public class MediaViewModel : BaseViewModel
     {
 
-        public MediaModel MediaModel;
+        public MediaModel MediaModel { get; set; }
 
         public EventHandler ManageMediaEndEvent;
 
@@ -123,7 +123,6 @@ namespace VJPlayer.ViewModels
             StopCommand.Execute(mediaElement);
             if (MediaModel.Loop)
                 PlayCommand.Execute(mediaElement);
-            OnPropertyChanged(nameof(MediaModel));
         }
     }
 }

@@ -64,10 +64,7 @@ namespace VJPlayer.Views
                 var viewModel = (MediaViewModel)DataContext;
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
-                {
                     viewModel.PlayCommand.Execute(mediaElement);
-                    playButtonClick(this, null);
-                }
             }
             CommandManager.InvalidateRequerySuggested();
             Focus();
@@ -128,24 +125,6 @@ namespace VJPlayer.Views
         {
             var viewModel = (MediaViewModel)DataContext;
             viewModel.ThumbDragStartedCommand.Execute(null);
-        }
-
-        private void playButtonClick(object sender, RoutedEventArgs e)
-        {
-            playButton.Visibility = Visibility.Collapsed;
-            pauseButton.Visibility = Visibility.Visible;
-        }
-
-        private void pauseButtonClick(object sender, RoutedEventArgs e)
-        {
-            pauseButton.Visibility = Visibility.Collapsed;
-            playButton.Visibility = Visibility.Visible;
-        }
-
-        private void stopButtonClick(object sender, RoutedEventArgs e)
-        {
-            pauseButton.Visibility = Visibility.Collapsed;
-            playButton.Visibility = Visibility.Visible;
         }
 
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
