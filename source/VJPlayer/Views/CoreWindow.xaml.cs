@@ -15,6 +15,7 @@ namespace VJPlayer.Views
     public partial class CoreWindow : Window
     {
         private DispatcherTimer timer;
+
         public CoreWindow()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace VJPlayer.Views
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
                     viewModel.PlayCommand.Execute(mediaElement);
+
             }
             CommandManager.InvalidateRequerySuggested();
             Focus();
