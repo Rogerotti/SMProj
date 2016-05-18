@@ -39,9 +39,10 @@ namespace VJPlayer.Commands
             var slider = array[1] as ThreeThumbSlider;
 
             slider.Minimum = 0;
-            slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-            slider.MiddleValue = mediaElement.Position.TotalSeconds;
-            
+            slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
+            slider.MiddleValue = mediaElement.Position.TotalMilliseconds;
+
+            mediaModel.TotalMilliseconds = slider.Maximum;
         }
 
     }

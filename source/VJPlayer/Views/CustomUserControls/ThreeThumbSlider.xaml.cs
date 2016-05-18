@@ -61,8 +61,9 @@ namespace VJPlayer.Views.CustomUserControls
 
         public void MiddleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            LowerSlider.Value = Math.Min(MiddleSlider.Value, LowerSlider.Value);
-            UpperSlider.Value = Math.Max(UpperSlider.Value, MiddleSlider.Value);
+            //LowerSlider.Value = Math.Min(MiddleSlider.Value, LowerSlider.Value);
+            //UpperSlider.Value = Math.Max(UpperSlider.Value, MiddleSlider.Value);
+
             MiddleValueChanged(this, e);
         }
 
