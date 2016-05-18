@@ -50,20 +50,25 @@ namespace VJPlayer.Views.CustomUserControls
         public void LowerSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             MiddleSlider.Value = Math.Max(MiddleSlider.Value, LowerSlider.Value);
+
+            if (LowerSlider.Value > UpperSlider.Value)
+                LowerSlider.Value = UpperSlider.Value;
+
             LowerValueChanged(this, e);
         }
 
         public void UpperSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             MiddleSlider.Value = Math.Min(MiddleSlider.Value, UpperSlider.Value);
+
+            if (UpperSlider.Value < LowerSlider.Value)
+                LowerSlider.Value = UpperSlider.Value;
+
             UpperValueChanged(this, e);
         }
 
         public void MiddleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            //LowerSlider.Value = Math.Min(MiddleSlider.Value, LowerSlider.Value);
-            //UpperSlider.Value = Math.Max(UpperSlider.Value, MiddleSlider.Value);
-
             MiddleValueChanged(this, e);
         }
 
