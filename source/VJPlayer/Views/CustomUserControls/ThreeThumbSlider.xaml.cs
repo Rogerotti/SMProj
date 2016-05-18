@@ -24,6 +24,15 @@ namespace VJPlayer.Views.CustomUserControls
         public event EventHandler MiddleValueChanged;
         public event EventHandler UpperValueChanged;
 
+        public event EventHandler UpperSliderDragStarted;
+        public event EventHandler UpperSliderDragCompleted;
+
+        public event EventHandler MiddleSliderDragStarted;
+        public event EventHandler MiddleSliderDragCompleted;
+
+        public event EventHandler LowerSliderDragStarted;
+        public event EventHandler LowerSliderDragCompleted;
+
         public ThreeThumbSlider()
         {
             InitializeComponent();
@@ -101,6 +110,38 @@ namespace VJPlayer.Views.CustomUserControls
 
         public static readonly DependencyProperty MaximumProperty =
             DependencyProperty.Register("Maximum", typeof(double), typeof(ThreeThumbSlider), new UIPropertyMetadata(1d));
+
+
+        public void MiddleSliderDragStartedEvent(object sender, RoutedEventArgs e)
+        {
+            MiddleSliderDragStarted?.Invoke(this, e);
+        }
+
+        public void MiddleSliderDragCompletedEvent(object sender, RoutedEventArgs e)
+        {
+            MiddleSliderDragCompleted?.Invoke(this, e);
+        }
+
+        public void UpperSliderDragStartedEvent(object sender, RoutedEventArgs e)
+        {
+            UpperSliderDragStarted?.Invoke(this, e);
+        }
+
+        public void UpperSliderDragCompletedEvent(object sender, RoutedEventArgs e)
+        {
+            UpperSliderDragCompleted?.Invoke(this, e);
+        }
+
+        public void LowerSliderDragStartedEvent(object sender, RoutedEventArgs e)
+        {
+            LowerSliderDragStarted?.Invoke(this, e);
+        }
+
+        public void LowerSliderDragCompletedEvent(object sender, RoutedEventArgs e)
+        {
+            LowerSliderDragCompleted?.Invoke(this, e);
+        }
+
 
     }
 }

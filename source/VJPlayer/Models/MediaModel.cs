@@ -7,9 +7,26 @@ namespace VJPlayer.Models
     public class MediaModel : INotifyPropertyChanged
     {
         private bool isPlaying;
-        public IList<String> UriList { get; set; }
+        private double volume;
 
-        public Double Volume { get; set; }
+
+        public int LowerThumbValue;
+
+        public Double Volume
+        {
+            get
+            {
+                return volume;
+            }
+            set
+            {
+                if (volume != value)
+                {
+                    volume = value;
+                    NotifyPropertyChanged(nameof(Volume));
+                }
+            }
+        }
 
         public Boolean IsPlaying
         {

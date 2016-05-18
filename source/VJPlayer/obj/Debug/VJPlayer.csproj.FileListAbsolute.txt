@@ -73,3 +73,5 @@ C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\Views\CustomUserControls\T
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.g.resources
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
+H:\sm projekt\source\VJPlayer\obj\Debug\Views\CustomUserControls\ThreeThumbSlider.g.cs
+H:\sm projekt\source\VJPlayer\obj\Debug\Views\CustomUserControls\ThreeThumbSlider.baml

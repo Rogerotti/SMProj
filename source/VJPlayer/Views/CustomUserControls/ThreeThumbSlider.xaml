@@ -75,6 +75,8 @@
                 Maximum="{Binding ElementName=root, Path=Maximum}"
                 Value="{Binding ElementName=root, Path=LowerValue, Mode=TwoWay}"
                 Template="{StaticResource simpleSlider}"
+                Thumb.DragCompleted="LowerSliderDragCompletedEvent"
+                Thumb.DragStarted="LowerSliderDragStartedEvent"
                 Margin="0,0,10,0">
         </Slider>
         <Slider x:Name="MiddleSlider"
@@ -82,6 +84,8 @@
                 Maximum="{Binding ElementName=root, Path=Maximum}"
                 Value="{Binding ElementName=root, Path=MiddleValue, Mode=TwoWay}"
                 Template="{StaticResource simpleSliderMiddle}"
+                Thumb.DragCompleted="MiddleSliderDragCompletedEvent"
+                Thumb.DragStarted="MiddleSliderDragStartedEvent"
                 Margin="0,0,0,0">
         </Slider>
 
@@ -90,6 +94,8 @@
                 Maximum="{Binding ElementName=root, Path=Maximum}"
                 Value="{Binding ElementName=root, Path=UpperValue, Mode=TwoWay}"
                 Template="{StaticResource simpleSlider}"
+                Thumb.DragCompleted="UpperSliderDragCompletedEvent"
+                Thumb.DragStarted="UpperSliderDragStartedEvent"
                 Margin="10,0,0,0">
         </Slider>
     </Grid>

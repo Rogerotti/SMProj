@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using VJPlayer.Models;
+using VJPlayer.Views.CustomUserControls;
 
 namespace VJPlayer.Commands
 {
@@ -22,7 +23,7 @@ namespace VJPlayer.Commands
             if (array != null)
             {
                 var mediaElement = array[0] as MediaElement;
-                var slider = array[1] as Slider;
+                var slider = array[1] as ThreeThumbSlider;
                 if (mediaElement != null && (mediaElement.Source != null) && (mediaElement.NaturalDuration.HasTimeSpan) && (!mediaModel.UserIsDraggingSlider) && slider != null)
                 {
                     return true;
@@ -35,11 +36,12 @@ namespace VJPlayer.Commands
         {
             var array = parameter as object[];
             var mediaElement = array[0] as MediaElement;
-            var slider = array[1] as Slider;
+            var slider = array[1] as ThreeThumbSlider;
 
             slider.Minimum = 0;
             slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalSeconds;
-            slider.Value = mediaElement.Position.TotalSeconds;
+            slider.MiddleValue = mediaElement.Position.TotalSeconds;
+            
         }
 
     }

@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="Commands\CloseWindowCommand.cs" />
     <Compile Include="Commands\LoopCommand.cs" />
+    <Compile Include="Commands\LowerSliderCompletedCommand.cs" />
     <Compile Include="Commands\ToogleLoopCommand.cs" />
     <Compile Include="Commands\MinimizeWindowCommand.cs" />
     <Compile Include="Commands\MuteCommand.cs" />
@@ -116,8 +117,8 @@
     <Compile Include="Views\CoreWindow.xaml.cs">
       <DependentUpon>CoreWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CustomUserControls\ThreeThumSlider.xaml.cs">
-      <DependentUpon>ThreeThumSlider.xaml</DependentUpon>
+    <Compile Include="Views\CustomUserControls\ThreeThumbSlider.xaml.cs">
+      <DependentUpon>ThreeThumbSlider.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CustomUserControls\ThreeThumSlider.xaml">
+    <Page Include="Views\CustomUserControls\ThreeThumbSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
