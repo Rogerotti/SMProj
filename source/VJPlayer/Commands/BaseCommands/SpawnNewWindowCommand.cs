@@ -7,7 +7,11 @@ namespace VJPlayer.Commands
 {
     class SpawnNewWindowCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
 
         public bool CanExecute(object parameter)
         {
@@ -20,7 +24,7 @@ namespace VJPlayer.Commands
             var currentWindow = parameter as Window;
             CoreWindow newWindow = new CoreWindow();
             newWindow.Show();
-            
+
         }
     }
 }

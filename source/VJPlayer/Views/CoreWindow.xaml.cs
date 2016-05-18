@@ -2,29 +2,30 @@
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using VJPlayer.ViewModels;
-using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 using System;
 using System.Windows.Input;
+using VJPlayer.Diagnostic;
 
 namespace VJPlayer.Views
 {
-    /// <summary>
-    /// Interaction logic for CoreWindow.xaml
-    /// </summary>
+
     public partial class CoreWindow : Window
     {
+
+        private DispatcherTimer timer;
+
         public CoreWindow()
         {
             InitializeComponent();
+            BindingErrorListener.Listen(m => MessageBox.Show(m));
             DataContext = new MediaViewModel();
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
-
         }
 
         /// <summary>
@@ -40,7 +41,7 @@ namespace VJPlayer.Views
             arrayOfObjects[0] = mediaElement;
             arrayOfObjects[1] = slider;
 
-            if(viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))
+            if (viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))
                 viewModel.SliderUpdateCommand.Execute(arrayOfObjects);
         }
 
@@ -65,6 +66,7 @@ namespace VJPlayer.Views
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
                     viewModel.PlayCommand.Execute(mediaElement);
+
             }
             CommandManager.InvalidateRequerySuggested();
             Focus();
@@ -108,6 +110,25 @@ namespace VJPlayer.Views
         private void SliderValueChanged(object sender, EventArgs e)
         {
             //TODO czas filmu
+            var viewModel = (MediaViewModel)DataContext;
+            if (slider.MiddleSlider.Value >= slider.UpperSlider.Value)
+            {
+                if (viewModel.MediaModel.Loop)
+                {
+                    slider.MiddleSlider.Value = slider.LowerSlider.Value;
+                    mediaElement.Position = TimeSpan.FromMilliseconds(slider.LowerSlider.Value);
+                }
+                else
+                {
+                    slider.MiddleSlider.Value = slider.UpperSlider.Value;
+                    viewModel.StopCommand.Execute(mediaElement);
+                }
+            }
+            else if (slider.MiddleSlider.Value <= slider.LowerSlider.Value)
+            {
+                slider.MiddleSlider.Value = slider.LowerSlider.Value;
+                mediaElement.Position = TimeSpan.FromMilliseconds(slider.LowerSlider.Value);
+            }
         }
 
         private void LowerLoopSliderValueChanged(object sender, EventArgs e)
@@ -120,27 +141,49 @@ namespace VJPlayer.Views
             //TODO gorny loop, ustawienie
         }
 
-        private void sliderDragCompleted(object sender, RoutedEventArgs e)
-        {
-            var viewModel = (MediaViewModel)DataContext;
-            object[] arrayOfObjects = new object[2];
-            arrayOfObjects[0] = mediaElement;
-            arrayOfObjects[1] = slider;
-
-            if(viewModel.ThumbDragCompletedCommand.CanExecute(arrayOfObjects))
-                viewModel.ThumbDragCompletedCommand.Execute(arrayOfObjects);
-        }
-
-        private void sliderDragStarted(object sender, RoutedEventArgs e)
-        {
-            var viewModel = (MediaViewModel)DataContext;
-            viewModel.ThumbDragStartedCommand.Execute(null);
-        }
 
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
             var viewModel = (MediaViewModel)DataContext;
             viewModel.ManageMediaEndEvent.Invoke(mediaElement, EventArgs.Empty);
         }
+
+        private void sliderMiddleSliderDragCompleted(object sender, EventArgs e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            object[] arrayOfObjects = new object[2];
+            arrayOfObjects[0] = mediaElement;
+            arrayOfObjects[1] = slider;
+
+            if (viewModel.ThumbDragCompletedCommand.CanExecute(arrayOfObjects))
+                viewModel.ThumbDragCompletedCommand.Execute(arrayOfObjects);
+        }
+
+        private void sliderMiddleSliderDragStarted(object sender, EventArgs e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            viewModel.ThumbDragStartedCommand.Execute(null);
+        }
+
+        private void LowerSliderDragStarted(object sender, EventArgs e)
+        {
+            // timer.Stop();
+        }
+
+        private void LowerSliderDragCompleted(object sender, EventArgs e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            object[] array = new object[2];
+            array[0] = mediaElement;
+            array[1] = slider.LowerValue;
+            //viewModel.LowerSliderCompletedCommand.Execute(array);
+        }
+
+        private void VolumeValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            viewModel.ChangeVolumeCommand.Execute(mediaElement);
+        }
+
     }
 }

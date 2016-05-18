@@ -13,7 +13,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="VJPlayer"
-        Width="525"
+        Width="600"
         Height="350"
         Background="#FF202020"
         AllowDrop="True"
@@ -59,6 +59,7 @@
 
         <MediaElement x:Name="mediaElement"
                       LoadedBehavior="Manual"
+                      ScrubbingEnabled="True"
                       MediaEnded="mediaElement_MediaEnded"/>
 
         <Grid HorizontalAlignment="Stretch"
@@ -117,18 +118,16 @@
 
             </ToggleButton>
 
-            <!--<Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
-            </Slider>-->
+            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0" UpperValue="{Binding MediaModel.TotalLength}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted"  LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" Canvas.Left="112" Canvas.Top="3" Width="301"/>
 
-            
-            <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="7" Grid.Row="1" Width="40" Height="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+                
             </ToggleButton>
-
-            <Slider x:Name="volume" Minimum="0" Maximum="100" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF0051FF"  VerticalAlignment="Center" />
+            <Slider
+                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center">
+                
+            </Slider>
         </Grid>
-              
-
-        
     </Grid>
     <wi:Interaction.Triggers>
         <wi:EventTrigger EventName="Drop">
