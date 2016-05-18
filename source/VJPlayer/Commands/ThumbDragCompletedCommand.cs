@@ -36,7 +36,7 @@ namespace VJPlayer.Commands
             var mediaElement = array[0] as MediaElement;
             var slider = array[1] as ThreeThumbSlider;
 
-            mediaElement.Position = TimeSpan.FromSeconds(slider.MiddleValue);
+            mediaElement.Position = TimeSpan.FromMilliseconds(slider.MiddleValue);
             mediaModel.UserIsDraggingSlider = false;
         }
     }

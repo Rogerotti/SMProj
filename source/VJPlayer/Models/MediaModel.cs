@@ -8,7 +8,7 @@ namespace VJPlayer.Models
     {
         private bool isPlaying;
         private double volume;
-        private double totalMilliseconds = 1;
+        private double totalMilliseconds = 100;
 
         public int LowerThumbValue;
 

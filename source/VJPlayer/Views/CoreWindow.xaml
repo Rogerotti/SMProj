@@ -83,7 +83,7 @@
                 
             </ToggleButton>
 
-            <uc:ThreeThumbSlider x:Name="slider" LowerValue="0" UpperValue="{Binding MediaModel.TotalMilliseconds}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted"  LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" Canvas.Left="112" Canvas.Top="3" Width="301"/>
+            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0" UpperValue="{Binding MediaModel.TotalMilliseconds}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted"  LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" Canvas.Left="112" Canvas.Top="3" Width="301"/>
 
             <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
                 
