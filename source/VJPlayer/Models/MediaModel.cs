@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace VJPlayer.Models
 {
-    public class MediaModel : INotifyPropertyChanged
+    public class MediaModel : IMediaModel, INotifyPropertyChanged
     {
         private bool isPlaying;
         private double volume;
@@ -12,6 +12,9 @@ namespace VJPlayer.Models
 
         public int LowerThumbValue;
 
+        /// <summary>
+        /// Dźwięk odtwarzanego utworu. Przyjmuje wartości od 0 - 1.
+        /// </summary>
         public Double Volume
         {
             get

@@ -13,7 +13,7 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="VJPlayer"
-        Width="525"
+        Width="600"
         Height="350"
         Background="#FF202020"
         AllowDrop="True"
@@ -60,7 +60,7 @@
 
         <Canvas
                 HorizontalAlignment="Left"
-                Width="525"
+                Width="600"
                 Height="35" 
                 VerticalAlignment="Bottom" 
                 Opacity="0"
@@ -88,7 +88,10 @@
             <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
                 
             </ToggleButton>
-         
+            <Slider
+                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged" Canvas.Left="528" Canvas.Top="3" Height="20" Width="40">
+                
+            </Slider>
         </Canvas>
     </Grid>
     <wi:Interaction.Triggers>

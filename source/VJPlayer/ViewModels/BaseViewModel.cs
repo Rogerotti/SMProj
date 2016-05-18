@@ -56,6 +56,5 @@ namespace VJPlayer.ViewModels
             if (handler != null)
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

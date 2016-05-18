@@ -96,21 +96,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\CloseWindowCommand.cs" />
-    <Compile Include="Commands\LoopCommand.cs" />
+    <Compile Include="Commands\MediaCommands\ChangeVolumeCommand.cs" />
+    <Compile Include="Commands\BaseCommands\CloseWindowCommand.cs" />
     <Compile Include="Commands\LowerSliderCompletedCommand.cs" />
+    <Compile Include="Commands\MediaCommands\MediaCommand.cs" />
     <Compile Include="Commands\ToogleLoopCommand.cs" />
-    <Compile Include="Commands\MinimizeWindowCommand.cs" />
-    <Compile Include="Commands\MuteCommand.cs" />
-    <Compile Include="Commands\PauseCommand.cs" />
-    <Compile Include="Commands\PlayCommand.cs" />
+    <Compile Include="Commands\BaseCommands\MinimizeWindowCommand.cs" />
+    <Compile Include="Commands\MediaCommands\MuteCommand.cs" />
+    <Compile Include="Commands\MediaCommands\PauseCommand.cs" />
+    <Compile Include="Commands\MediaCommands\PlayCommand.cs" />
     <Compile Include="Commands\SliderUpdateCommand.cs" />
-    <Compile Include="Commands\SpawnNewWindowCommand.cs" />
-    <Compile Include="Commands\StopCommand.cs" />
+    <Compile Include="Commands\BaseCommands\SpawnNewWindowCommand.cs" />
+    <Compile Include="Commands\MediaCommands\StopCommand.cs" />
     <Compile Include="Commands\ThumbDragCompletedCommand.cs" />
     <Compile Include="Commands\ThumbDragStartedCommand.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NegativeBoolToVisibilityConverter.cs" />
+    <Compile Include="Models\IMediaModel.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />

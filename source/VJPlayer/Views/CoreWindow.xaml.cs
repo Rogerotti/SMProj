@@ -167,5 +167,11 @@ namespace VJPlayer.Views
             array[1] = slider.LowerValue;
             //viewModel.LowerSliderCompletedCommand.Execute(array);
         }
+
+        private void VolumeValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var viewModel = (MediaViewModel)DataContext;
+            viewModel.ChangeVolumeCommand.Execute(mediaElement);
+        }
     }
 }

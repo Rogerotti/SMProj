@@ -22,6 +22,17 @@ namespace VJPlayer.ViewModels
         private ICommand sliderUpdateCommand;
         private ICommand thumbDragStartedCommand;
         private ICommand loopCommand;
+        private ICommand changeVolumeCommand;
+
+        public ICommand ChangeVolumeCommand
+        {
+            get { return changeVolumeCommand; }
+            set
+            {
+                changeVolumeCommand = value;
+                OnPropertyChanged(nameof(ChangeVolumeCommand));
+            }
+        }
 
         public ICommand LoopCommand
         {
@@ -114,7 +125,9 @@ namespace VJPlayer.ViewModels
             SliderUpdateCommand = new SliderUpdateCommand(MediaModel);
             ThumbDragStartedCommand = new ThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new ThumbDragCompletedCommand(MediaModel);
+            ChangeVolumeCommand = new ChangeVolumeCommand(MediaModel);
             ManageMediaEndEvent = new EventHandler(ManageMediaEnd);
+            
         }
 
         private void ManageMediaEnd(object sender, EventArgs args)
