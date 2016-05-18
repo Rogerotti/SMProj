@@ -100,7 +100,7 @@
     <Compile Include="Commands\BaseCommands\CloseWindowCommand.cs" />
     <Compile Include="Commands\LowerSliderCompletedCommand.cs" />
     <Compile Include="Commands\MediaCommands\MediaCommand.cs" />
-    <Compile Include="Commands\ToogleLoopCommand.cs" />
+    <Compile Include="Commands\ToggleLoopCommand.cs" />
     <Compile Include="Commands\BaseCommands\MinimizeWindowCommand.cs" />
     <Compile Include="Commands\MediaCommands\MuteCommand.cs" />
     <Compile Include="Commands\MediaCommands\PauseCommand.cs" />
