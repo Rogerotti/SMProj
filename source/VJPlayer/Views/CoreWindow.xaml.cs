@@ -90,9 +90,9 @@ namespace VJPlayer.Views
         /// </summary>
         private void MediaControlsCanvas_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Canvas c = (Canvas)sender;
+            Grid g = (Grid)sender;
             DoubleAnimation animation = new DoubleAnimation(1, System.TimeSpan.FromMilliseconds(300));
-            c.BeginAnimation(Canvas.OpacityProperty, animation);
+            g.BeginAnimation(Grid.OpacityProperty, animation);
         }
 
         /// <summary>
@@ -100,9 +100,9 @@ namespace VJPlayer.Views
         /// </summary>
         private void MediaControlsCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            Canvas c = (Canvas)sender;
+            Grid g = (Grid)sender;
             DoubleAnimation animation = new DoubleAnimation(0, System.TimeSpan.FromMilliseconds(300));
-            c.BeginAnimation(Canvas.OpacityProperty, animation);
+            g.BeginAnimation(Grid.OpacityProperty, animation);
         }
 
         private void SliderValueChanged(object sender, EventArgs e)

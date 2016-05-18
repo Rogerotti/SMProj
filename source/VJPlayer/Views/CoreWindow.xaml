@@ -19,13 +19,15 @@
         AllowDrop="True"
         WindowStyle="None"
         AllowsTransparency="True"
+        MinWidth="525"
+        MinHeight="90"
         ResizeMode="CanResizeWithGrip"
     >
     <Window.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
         <converters:NegativeBoolToVisibilityConverter x:Key="NegativeBoolToVisibilityConverter"></converters:NegativeBoolToVisibilityConverter>
     </Window.Resources>
-    
+
 
     <Grid Background="Transparent"        
           Tag="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type Window}}}">
@@ -45,6 +47,7 @@
                           CommandParameter="{Binding PlacementTarget.Tag,RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}"/>
 
             </ContextMenu>
+            
         </Grid.ContextMenu>
 
         <TextBlock
@@ -58,42 +61,74 @@
                       LoadedBehavior="Manual"
                       MediaEnded="mediaElement_MediaEnded"/>
 
-        <Canvas
-                HorizontalAlignment="Left"
-                Width="525"
-                Height="35" 
-                VerticalAlignment="Bottom" 
-                Opacity="0"
-                MouseEnter="MediaControlsCanvas_MouseEnter"
-                MouseLeave="MediaControlsCanvas_MouseLeave">
+        <Grid HorizontalAlignment="Stretch"
+              Height="60"
+              VerticalAlignment="Bottom"
+              MouseEnter="MediaControlsCanvas_MouseEnter"
+              MouseLeave="MediaControlsCanvas_MouseLeave"
+              Background="#00FFFFFF"
+              >
 
-            <Button x:Name="playButton" Content="Play" Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock x:Name="currentMediaTime" Text="--:--" Grid.Row="0" Grid.Column="0" TextAlignment="Center" Foreground="#FF00A2FF" FontSize="13" HorizontalAlignment="Center"/>
+
+            <uc:ThreeThumbSlider x:Name="slider" Minimum="0" Maximum="100" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted" LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" />
+
+            <TextBlock x:Name="MediaTime" Text="--:--" Grid.Row="0" Grid.Column="9" TextAlignment="Center" Foreground="#FF00A2FF" FontSize="13"></TextBlock>
+
+
+            <Button x:Name="playButton" Content="Play" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
+            </Button>
+
+            <Button x:Name="pauseButton" Content="Pause" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <Button x:Name="pauseButton" Content="Pause" Canvas.Left="10" Canvas.Top="3" Width="30" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
-                <!--todo: wrzucic <Image> </Image>-->
+            <Button x:Name="nextButton" Content="Next" Grid.Row="1" Grid.Column="4" Width="40" Height="40">
             </Button>
 
-            <Button x:Name="stopButton" Content="Stop" Canvas.Left="45" Canvas.Top="3" Width="30" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" >
-                <!--todo: wrzucic <Image> </Image>-->
+            <Button x:Name="previousButton" Content="Prev" Grid.Row="1" Grid.Column="2" Width="40" Height="40" >
             </Button>
-
-            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" Canvas.Left="470" Canvas.Top="3" Width="40" >
-                
-            </ToggleButton>
             
+
+            <Button x:Name="stopButton" Content="Stop" Grid.Row="1" Grid.Column="3" Width="40" Height="40" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" >
+                <!--todo: wrzucic <Image> </Image>-->
+            </Button>
+
+            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" Grid.Row="1" Grid.Column="5"  Width="40" Height="40" >
+
+            </ToggleButton>
+
             <!--<Slider x:Name="slider" Canvas.Left="112" Canvas.Top="3" Width="301" ValueChanged="SliderValueChanged" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted">
-                
             </Slider>-->
 
-            <uc:ThreeThumbSlider x:Name="slider" Minimum="0" Maximum="100" Thumb.DragCompleted="sliderDragCompleted"  Thumb.DragStarted="sliderDragStarted" LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" Canvas.Left="112" Canvas.Top="3" Width="301"/>
-
-            <ToggleButton x:Name="muteButton" Content="Mute" Canvas.Left="418" Canvas.Top="3" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
-                
+            
+            <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="7" Grid.Row="1" Width="40" Height="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
             </ToggleButton>
-         
-        </Canvas>
+
+            <Slider x:Name="volume" Minimum="0" Maximum="100" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" Foreground="#FF0051FF"  VerticalAlignment="Center" />
+        </Grid>
+              
+
+        
     </Grid>
     <wi:Interaction.Triggers>
         <wi:EventTrigger EventName="Drop">
