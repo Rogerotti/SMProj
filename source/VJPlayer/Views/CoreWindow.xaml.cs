@@ -109,15 +109,25 @@ namespace VJPlayer.Views
         private void SliderValueChanged(object sender, EventArgs e)
         {
             //TODO czas filmu
+            var viewModel = (MediaViewModel)DataContext;
             if (slider.MiddleSlider.Value >= slider.UpperSlider.Value)
-            {
-                var viewModel = (MediaViewModel)DataContext;
+            {               
                 if (viewModel.MediaModel.Loop)
-                    mediaElement.Position = TimeSpan.FromSeconds(slider.LowerSlider.Value);
+                {
+                    slider.MiddleSlider.Value = slider.LowerSlider.Value;
+                    mediaElement.Position = TimeSpan.FromMilliseconds(slider.LowerSlider.Value);
+                }
                 else
+                {
+                    slider.MiddleSlider.Value = slider.UpperSlider.Value;
                     viewModel.StopCommand.Execute(mediaElement);
+                }
             }
-
+            else if (slider.MiddleSlider.Value <= slider.LowerSlider.Value)
+            {
+                slider.MiddleSlider.Value = slider.LowerSlider.Value;
+                mediaElement.Position = TimeSpan.FromMilliseconds(slider.LowerSlider.Value);
+            }
         }
 
         private void LowerLoopSliderValueChanged(object sender, EventArgs e)

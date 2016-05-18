@@ -9,13 +9,13 @@ using VJPlayer.Models;
 
 namespace VJPlayer.Commands
 {
-    public class ToogleLoopCommand : ICommand
+    public class ToggleLoopCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         private MediaModel mediaModel;
 
-        public ToogleLoopCommand(MediaModel mediaModel)
+        public ToggleLoopCommand(MediaModel mediaModel)
         {
             this.mediaModel = mediaModel;
         }

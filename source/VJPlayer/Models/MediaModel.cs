@@ -8,7 +8,7 @@ namespace VJPlayer.Models
     {
         private bool isPlaying;
         private double volume;
-
+        private double totalMilliseconds = 1;
 
         public int LowerThumbValue;
 
@@ -43,6 +43,22 @@ namespace VJPlayer.Models
                 {
                     isPlaying = value;
                     NotifyPropertyChanged(nameof(IsPlaying));
+                }
+            }
+        }
+
+        public Double TotalMilliseconds
+        {
+            get
+            {
+                return totalMilliseconds;
+            }
+            set
+            {
+                if (totalMilliseconds != value)
+                {
+                    totalMilliseconds = value;
+                    NotifyPropertyChanged(nameof(TotalMilliseconds));
                 }
             }
         }

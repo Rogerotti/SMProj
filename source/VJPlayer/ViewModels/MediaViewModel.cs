@@ -121,7 +121,7 @@ namespace VJPlayer.ViewModels
             StopCommand = new StopCommand(MediaModel);
             PauseCommand = new PauseCommand(MediaModel);
             PlayCommand = new PlayCommand(MediaModel);
-            LoopCommand = new ToogleLoopCommand(MediaModel);
+            LoopCommand = new ToggleLoopCommand(MediaModel);
             SliderUpdateCommand = new SliderUpdateCommand(MediaModel);
             ThumbDragStartedCommand = new ThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new ThumbDragCompletedCommand(MediaModel);
