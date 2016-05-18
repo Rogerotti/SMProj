@@ -2,23 +2,23 @@
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using VJPlayer.ViewModels;
-using System.Windows.Controls.Primitives;
 using System.Windows.Threading;
 using System;
 using System.Windows.Input;
+using VJPlayer.Diagnostic;
 
 namespace VJPlayer.Views
 {
-    /// <summary>
-    /// Interaction logic for CoreWindow.xaml
-    /// </summary>
+
     public partial class CoreWindow : Window
     {
+
         private DispatcherTimer timer;
 
         public CoreWindow()
         {
             InitializeComponent();
+            BindingErrorListener.Listen(m => MessageBox.Show(m));
             DataContext = new MediaViewModel();
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
@@ -26,7 +26,6 @@ namespace VJPlayer.Views
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
-
         }
 
         /// <summary>
@@ -42,7 +41,7 @@ namespace VJPlayer.Views
             arrayOfObjects[0] = mediaElement;
             arrayOfObjects[1] = slider;
 
-            if(viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))
+            if (viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))
                 viewModel.SliderUpdateCommand.Execute(arrayOfObjects);
         }
 
@@ -113,7 +112,7 @@ namespace VJPlayer.Views
             //TODO czas filmu
             var viewModel = (MediaViewModel)DataContext;
             if (slider.MiddleSlider.Value >= slider.UpperSlider.Value)
-            {               
+            {
                 if (viewModel.MediaModel.Loop)
                 {
                     slider.MiddleSlider.Value = slider.LowerSlider.Value;
@@ -168,7 +167,7 @@ namespace VJPlayer.Views
 
         private void LowerSliderDragStarted(object sender, EventArgs e)
         {
-           // timer.Stop();
+            // timer.Stop();
         }
 
         private void LowerSliderDragCompleted(object sender, EventArgs e)

@@ -111,6 +111,7 @@
     <Compile Include="Commands\MediaCommands\Slider\SliderMiddleThumbDragStartedCommand.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NegativeBoolToVisibilityConverter.cs" />
+    <Compile Include="Diagnostics\BindingErrorListener.cs" />
     <Compile Include="Models\IMediaModel.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
