@@ -8,9 +8,33 @@ namespace VJPlayer.Models
     {
         private bool isPlaying;
         private double volume;
-        private double totalMilliseconds = 1;
+        private double totalLength = 1;
 
         public int LowerThumbValue;
+
+        /// <summary>
+        /// Informacje o aktualnym odtwarzania utworu.
+        /// </summary>
+        public Boolean IsPlaying
+        {
+            get
+            {
+                return isPlaying;
+            }
+            set
+            {
+                if (isPlaying != value)
+                {
+                    isPlaying = value;
+                    NotifyPropertyChanged(nameof(IsPlaying));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Decyduje o zapętleniu aktualnie odtwarzanego utworu.
+        /// </summary>
+        public Boolean Loop { get; set; }
 
         /// <summary>
         /// Dźwięk odtwarzanego utworu. Przyjmuje wartości od 0 - 1.
@@ -31,49 +55,34 @@ namespace VJPlayer.Models
             }
         }
 
-        public Boolean IsPlaying
+        /// <summary>
+        /// Całkowity czas odtwarzanego elementu.
+        /// </summary>
+        public Double TotalLength
         {
             get
             {
-                return isPlaying;
+                return totalLength;
             }
             set
             {
-                if (isPlaying != value)
+                if (totalLength != value)
                 {
-                    isPlaying = value;
-                    NotifyPropertyChanged(nameof(IsPlaying));
+                    totalLength = value;
+                    NotifyPropertyChanged(nameof(TotalLength));
                 }
             }
         }
 
-        public Double TotalMilliseconds
-        {
-            get
-            {
-                return totalMilliseconds;
-            }
-            set
-            {
-                if (totalMilliseconds != value)
-                {
-                    totalMilliseconds = value;
-                    NotifyPropertyChanged(nameof(TotalMilliseconds));
-                }
-            }
-        }
-
-        public Boolean Loop { get; set; }
-
-        public Boolean UserIsDraggingSlider { get; set; }
+        public Boolean UserDraggingMiddleSliderThumb { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void NotifyPropertyChanged(string info)
+        private void NotifyPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
-                handler.Invoke(this, new PropertyChangedEventArgs(info));
+                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

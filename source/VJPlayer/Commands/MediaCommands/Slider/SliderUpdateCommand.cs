@@ -1,30 +1,22 @@
-﻿using System;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Controls;
+using VJPlayer.Commands.MediaCommands;
 using VJPlayer.Models;
 using VJPlayer.Views.CustomUserControls;
 
 namespace VJPlayer.Commands
 {
-    public class SliderUpdateCommand : ICommand
+    public class SliderUpdateCommand : MediaCommand
     {
-        public event EventHandler CanExecuteChanged;
+        public SliderUpdateCommand(IMediaModel mediaModel) : base(mediaModel) { }
 
-        private MediaModel mediaModel;
-
-        public SliderUpdateCommand(MediaModel mediaModel)
-        {
-            this.mediaModel = mediaModel;
-        }
-
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             var array = parameter as object[];
             if (array != null)
             {
                 var mediaElement = array[0] as MediaElement;
                 var slider = array[1] as ThreeThumbSlider;
-                if (mediaElement != null && (mediaElement.Source != null) && (mediaElement.NaturalDuration.HasTimeSpan) && (!mediaModel.UserIsDraggingSlider) && slider != null)
+                if (mediaElement != null && (mediaElement.Source != null) && (mediaElement.NaturalDuration.HasTimeSpan) && (!mediaModel.UserDraggingMiddleSliderThumb) && slider != null)
                 {
                     return true;
                 }
@@ -32,7 +24,7 @@ namespace VJPlayer.Commands
             return false;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var array = parameter as object[];
             var mediaElement = array[0] as MediaElement;
@@ -42,7 +34,7 @@ namespace VJPlayer.Commands
             slider.Maximum = mediaElement.NaturalDuration.TimeSpan.TotalMilliseconds;
             slider.MiddleValue = mediaElement.Position.TotalMilliseconds;
 
-            mediaModel.TotalMilliseconds = slider.Maximum;
+            mediaModel.TotalLength = slider.Maximum;
         }
 
     }

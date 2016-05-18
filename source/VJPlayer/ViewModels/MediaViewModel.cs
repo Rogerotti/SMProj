@@ -123,8 +123,8 @@ namespace VJPlayer.ViewModels
             PlayCommand = new PlayCommand(MediaModel);
             LoopCommand = new ToggleLoopCommand(MediaModel);
             SliderUpdateCommand = new SliderUpdateCommand(MediaModel);
-            ThumbDragStartedCommand = new ThumbDragStartedCommand(MediaModel);
-            ThumbDragCompletedCommand = new ThumbDragCompletedCommand(MediaModel);
+            ThumbDragStartedCommand = new SliderMiddleThumbDragStartedCommand(MediaModel);
+            ThumbDragCompletedCommand = new SliderMiddleThumbDragCompletedCommand(MediaModel);
             ChangeVolumeCommand = new ChangeVolumeCommand(MediaModel);
             ManageMediaEndEvent = new EventHandler(ManageMediaEnd);
             

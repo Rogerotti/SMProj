@@ -41,21 +41,6 @@ G:\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
 D:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
 D:\SMProj\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
 C:\Users\Janek\Documents\Visual Studio 2015\Projects\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csprojResolveAssemblyReference.cache
-H:\sm projekt\Output\VJPlayer.exe.config
-H:\sm projekt\Output\VJPlayer.exe
-H:\sm projekt\Output\VJPlayer.pdb
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.csprojResolveAssemblyReference.cache
-H:\sm projekt\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
-H:\sm projekt\source\VJPlayer\obj\Debug\App.g.cs
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.cache
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.lref
-H:\sm projekt\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.g.resources
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.exe
-H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.pdb
-H:\sm projekt\source\VJPlayer\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\J\Documents\SMProj\Output\VJPlayer.exe.config
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.exe
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.pdb
@@ -73,5 +58,20 @@ C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\Views\CustomUserControls\T
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.g.resources
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
 C:\Users\J\Documents\SMProj\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
+H:\sm projekt\Output\VJPlayer.exe.config
+H:\sm projekt\Output\VJPlayer.exe
+H:\sm projekt\Output\VJPlayer.pdb
+H:\sm projekt\source\VJPlayer\obj\Debug\Views\CoreWindow.g.cs
 H:\sm projekt\source\VJPlayer\obj\Debug\Views\CustomUserControls\ThreeThumbSlider.g.cs
+H:\sm projekt\source\VJPlayer\obj\Debug\App.g.cs
+H:\sm projekt\source\VJPlayer\obj\Debug\GeneratedInternalTypeHelper.g.cs
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.cache
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer_MarkupCompile.lref
+H:\sm projekt\source\VJPlayer\obj\Debug\Views\CoreWindow.baml
 H:\sm projekt\source\VJPlayer\obj\Debug\Views\CustomUserControls\ThreeThumbSlider.baml
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.g.resources
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.Properties.Resources.resources
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.csproj.GenerateResource.Cache
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.exe
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.pdb
+H:\sm projekt\source\VJPlayer\obj\Debug\VJPlayer.csprojResolveAssemblyReference.cache

@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.Windows.Input;
+using VJPlayer.Commands.MediaCommands;
 using VJPlayer.Models;
 using VJPlayer.Views.CustomUserControls;
 
 namespace VJPlayer.Commands
 {
-    public class ThumbDragCompletedCommand : ICommand
+    public class SliderMiddleThumbDragCompletedCommand : MediaCommand
     {
-        public event EventHandler CanExecuteChanged;
+        public SliderMiddleThumbDragCompletedCommand(IMediaModel mediaModel) : base(mediaModel) { }
 
-        private MediaModel mediaModel;
-
-        public ThumbDragCompletedCommand(MediaModel mediaModel)
-        {
-            this.mediaModel = mediaModel;
-        }
-
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             var array = parameter as object[];
             if (array != null)
@@ -30,14 +23,14 @@ namespace VJPlayer.Commands
             return false;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var array = parameter as object[];
             var mediaElement = array[0] as MediaElement;
             var slider = array[1] as ThreeThumbSlider;
 
             mediaElement.Position = TimeSpan.FromSeconds(slider.MiddleValue);
-            mediaModel.UserIsDraggingSlider = false;
+            mediaModel.UserDraggingMiddleSliderThumb = false;
         }
     }
 }

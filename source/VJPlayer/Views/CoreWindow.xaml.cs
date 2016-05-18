@@ -183,5 +183,6 @@ namespace VJPlayer.Views
             var viewModel = (MediaViewModel)DataContext;
             viewModel.ChangeVolumeCommand.Execute(mediaElement);
         }
+
     }
 }
