@@ -18,6 +18,7 @@ namespace VJPlayer.Views
         public CoreWindow()
         {
             InitializeComponent();
+
             BindingErrorListener.Listen(m => MessageBox.Show(m));
             DataContext = new MediaViewModel();
             Drop += CoreWindow_Drop;

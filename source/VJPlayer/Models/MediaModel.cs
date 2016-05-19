@@ -7,7 +7,7 @@ namespace VJPlayer.Models
     public class MediaModel : IMediaModel, INotifyPropertyChanged
     {
         private bool isPlaying;
-        private double volume;
+        private double volume = 0.5;
         private double totalLength = 100;
 
         public int LowerThumbValue;

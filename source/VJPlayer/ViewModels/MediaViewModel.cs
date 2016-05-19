@@ -131,11 +131,12 @@ namespace VJPlayer.ViewModels
         }
 
         private void ManageMediaEnd(object sender, EventArgs args)
-        {
-            var mediaElement = sender as MediaElement;
-            StopCommand.Execute(mediaElement);
-            if (MediaModel.Loop)
-                PlayCommand.Execute(mediaElement);
+        {      
+            if (!MediaModel.Loop)
+            {
+                var mediaElement = sender as MediaElement;
+                StopCommand.Execute(mediaElement);
+            }   
         }
     }
 }

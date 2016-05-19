@@ -91,10 +91,7 @@
 
             <TextBlock x:Name="currentMediaTime" Text="--:--" Grid.Row="0" Grid.Column="0" TextAlignment="Center" Foreground="#FF00A2FF" FontSize="13" HorizontalAlignment="Center"/>
 
-
-
             <TextBlock x:Name="MediaTime" Text="--:--" Grid.Row="0" Grid.Column="9" TextAlignment="Center" Foreground="#FF00A2FF" FontSize="13"></TextBlock>
-
 
             <Button x:Name="playButton" Content="Play" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
             </Button>
