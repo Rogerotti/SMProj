@@ -6,30 +6,10 @@ namespace VJPlayer.Models
 {
     public class MediaModel : IMediaModel, INotifyPropertyChanged
     {
-        private bool isPlaying;
         private double volume = 0.5;
         private double totalLength = 100;
-
+        private MediaModelState state;
         public int LowerThumbValue;
-
-        /// <summary>
-        /// Informacje o aktualnym odtwarzania utworu.
-        /// </summary>
-        public Boolean IsPlaying
-        {
-            get
-            {
-                return isPlaying;
-            }
-            set
-            {
-                if (isPlaying != value)
-                {
-                    isPlaying = value;
-                    NotifyPropertyChanged(nameof(IsPlaying));
-                }
-            }
-        }
 
         /// <summary>
         /// Decyduje o zapętleniu aktualnie odtwarzanego utworu.
@@ -75,6 +55,22 @@ namespace VJPlayer.Models
         }
 
         public Boolean UserDraggingMiddleSliderThumb { get; set; }
+
+        public MediaModelState State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                if (state != value)
+                {
+                    state = value;
+                    NotifyPropertyChanged(nameof(State));
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

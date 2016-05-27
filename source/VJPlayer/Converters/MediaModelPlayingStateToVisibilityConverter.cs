@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using VJPlayer.Models;
 
 namespace VJPlayer.Converters
 {
-    public class NegativeBoolToVisibilityConverter : IValueConverter
+    public class MediaModelPlayingStateToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var visibleValue = value as bool?;
-            if (visibleValue == null || visibleValue == true)
+            var visibleValue = value as MediaModelState?;
+            if (visibleValue == null) throw new ArgumentNullException(nameof(visibleValue));
+
+            if(visibleValue == MediaModelState.Playing)
                 return Visibility.Collapsed;
 
             return Visibility.Visible;
@@ -22,11 +21,7 @@ namespace VJPlayer.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var visibleValue = value as Visibility?;
-            if (visibleValue == null || visibleValue == Visibility.Visible)
-                return false;
-
-            return true;
+            return null;
         }
     }
 }

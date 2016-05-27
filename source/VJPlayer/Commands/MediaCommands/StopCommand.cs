@@ -11,14 +11,14 @@ namespace VJPlayer.Commands
         public override bool CanExecute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
-            return mediaElement != null && mediaElement.Source != null && mediaModel.IsPlaying;
+            return mediaElement != null && mediaElement.Source != null && (mediaModel.State == MediaModelState.Playing || mediaModel.State == MediaModelState.Paused);
         }
 
         public override void Execute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
             mediaElement.Stop();
-            mediaModel.IsPlaying = false;
+            mediaModel.State = MediaModelState.Stoped;
         }
     }
 }

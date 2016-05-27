@@ -4,15 +4,17 @@ namespace VJPlayer.Models
 {
     public interface IMediaModel
     {
+
+        /// <summary>
+        /// Określa stan modelu.
+        /// </summary>
+        MediaModelState State { get; set; }
+
         /// <summary>
         /// Dźwięk odtwarzanego elementu. Przyjmuje wartości od 0 - 1.
         /// </summary>
         Double Volume { get; set; }
 
-        /// <summary>
-        /// Informacje o aktualnym odtwarzanego elemntu.
-        /// </summary>
-        Boolean IsPlaying { get; set; }
 
         /// <summary>
         /// Całkowity czas odtwarzanego elementu.

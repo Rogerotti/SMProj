@@ -18,7 +18,7 @@ namespace VJPlayer.Commands
         {
             var mediaElement = parameter as MediaElement;
             mediaElement.Play();
-            mediaModel.IsPlaying = true;
+            mediaModel.State = MediaModelState.Playing;
         }
     }
 }

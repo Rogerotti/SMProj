@@ -24,8 +24,8 @@
         ResizeMode="CanResizeWithGrip"
     >
     <Window.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"></converters:BoolToVisibilityConverter>
-        <converters:NegativeBoolToVisibilityConverter x:Key="NegativeBoolToVisibilityConverter"></converters:NegativeBoolToVisibilityConverter>
+        <converters:MediaModelPlayingStateToVisibilityConverter x:Key="PlayingConverter"></converters:MediaModelPlayingStateToVisibilityConverter>
+        <converters:MediaModelIsPausedToVisibilityConverter x:Key="PauseConverter"></converters:MediaModelIsPausedToVisibilityConverter>
     </Window.Resources>
 
 
@@ -93,10 +93,10 @@
 
             <TextBlock x:Name="MediaTime" Text="--:--" Grid.Row="0" Grid.Column="9" TextAlignment="Center" Foreground="#FF00A2FF" FontSize="13"></TextBlock>
 
-            <Button x:Name="playButton" Content="Play" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying,  Converter={StaticResource NegativeBoolToVisibilityConverter}}">
+            <Button x:Name="playButton" Content="Play" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PlayCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.State,  Converter={StaticResource PlayingConverter}}">
             </Button>
 
-            <Button x:Name="pauseButton" Content="Pause" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.IsPlaying, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Button x:Name="pauseButton" Content="Pause" Grid.Row="1" Grid.Column="0" Width="40" Height="40" Command="{Binding Path=PauseCommand}" CommandParameter="{Binding ElementName=mediaElement}" Visibility="{Binding MediaModel.State, Converter={StaticResource PauseConverter}}">
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 

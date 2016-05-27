@@ -11,7 +11,7 @@ namespace VJPlayer.Commands
         public override bool CanExecute(object parameter)
         {
             var mediaElement = parameter as MediaElement;
-            return mediaElement != null && mediaModel.IsPlaying && mediaElement.DataContext != null;
+            return mediaElement != null && mediaElement.DataContext != null;
         }
 
         public override void Execute(object parameter)
