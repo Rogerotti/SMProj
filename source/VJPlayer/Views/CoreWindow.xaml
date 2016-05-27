@@ -50,12 +50,18 @@
             
         </Grid.ContextMenu>
 
+        <Button VerticalAlignment="Center" HorizontalAlignment="Left" Click="Button_Click" Content="youtube">
+
+        </Button>
+        
         <TextBlock
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Foreground="White"
             Text="Drop content here"
             />
+   
+
 
         <MediaElement x:Name="mediaElement"
                       LoadedBehavior="Manual"

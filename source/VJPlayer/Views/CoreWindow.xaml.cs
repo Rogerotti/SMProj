@@ -6,10 +6,13 @@ using System.Windows.Threading;
 using System;
 using System.Windows.Input;
 using VJPlayer.Diagnostic;
+using VideoLibrary;
+using System.IO;
+using System.Security.Permissions;
+using VJPlayer.Managers;
 
 namespace VJPlayer.Views
 {
-
     public partial class CoreWindow : Window
     {
 
@@ -71,6 +74,7 @@ namespace VJPlayer.Views
             }
             CommandManager.InvalidateRequerySuggested();
             Focus();
+   
         }
 
 
@@ -186,5 +190,11 @@ namespace VJPlayer.Views
             viewModel.ChangeVolumeCommand.Execute(mediaElement);
         }
 
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window youtube = new YouTubePicker();
+            youtube.Show();
+        }
     }
 }

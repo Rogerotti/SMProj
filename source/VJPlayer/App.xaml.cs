@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
+using VJPlayer.Managers;
 
 namespace VJPlayer
 {
@@ -13,5 +10,17 @@ namespace VJPlayer
     /// </summary>
     public partial class App : Application
     {
+
+        private void ApplicationExit(object sender, ExitEventArgs e)
+        {
+            try
+            {
+                var tempFolderPath = FileManagement.GetTempFilesPath();
+                Directory.Delete(tempFolderPath, true);
+            }
+            catch (Exception)
+            {
+            };
+        }
     }
 }
