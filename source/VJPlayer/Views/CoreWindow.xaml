@@ -111,7 +111,7 @@
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" Grid.Row="1" Grid.Column="5"  Width="40" Height="40" >
+            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" IsChecked="{Binding MediaModel.Loop, Mode=TwoWay}" Grid.Row="1" Grid.Column="5"  Width="40" Height="40" >
 
             </ToggleButton>
 
@@ -121,7 +121,7 @@
                 
             </ToggleButton>
             <Slider
-                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center">
+                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged"  Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center">
                 
             </Slider>
         </Grid>

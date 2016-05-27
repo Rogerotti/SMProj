@@ -127,7 +127,9 @@ namespace VJPlayer.ViewModels
             ThumbDragCompletedCommand = new SliderMiddleThumbDragCompletedCommand(MediaModel);
             ChangeVolumeCommand = new ChangeVolumeCommand(MediaModel);
             ManageMediaEndEvent = new EventHandler(ManageMediaEnd);
-            
+            MediaModel.Loop = true;
+            MediaModel.Volume = 1;
+            MediaModel.Volume = 0;
         }
 
         private void ManageMediaEnd(object sender, EventArgs args)
