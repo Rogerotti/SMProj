@@ -9,9 +9,7 @@
         Background="#FF202020"
  Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
         Title="VJPlayer" Height="220" Width="530">
-<Grid>
- <Controls:ProgressRing x:Name="progressRing" VerticalAlignment="Center" Foreground="#FF0080FF" IsActive="False"></Controls:ProgressRing>
-       
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*" />
@@ -28,17 +26,17 @@
         <Label x:Name="youtubePathLabel" Grid.Row="0" Grid.Column="0"  Content="Youtube path:" Margin="10" Foreground="#FF0080FF"/>
         <TextBox x:Name="YouTubeLink"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
 
-        
+
         <Label x:Name="targetPath" Grid.Row="1" Grid.Column="0" Content="Target path: " Margin="10" Foreground="#FF0080FF"/>
         <TextBox x:Name="Directory" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
         <Button x:Name="PickDirectory" Grid.Row="1" Grid.Column="2"  Click="PickDirectory_Click" Content="Pick directory" VerticalAlignment="Center" Margin="20,0,20,0"></Button>
-        
+
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="20">
-        <Button x:Name="DownloadTemporary" Content="Download temporary" Click="DownloadTemporary_Click" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
-        <Button x:Name="Download" Content="Download" Click="Download_Click" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+            <Button x:Name="DownloadTemporary" Content="Download temporary" Click="DownloadTemporaryClick" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+            <Button x:Name="Download" Content="Download" Click="Download_Click" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
         </StackPanel>
-        
+        <Controls:ProgressRing  Grid.Row="2" Grid.Column="2"  x:Name="progressRing" VerticalAlignment="Center" Foreground="#FF0080FF" IsActive="False"></Controls:ProgressRing>
+
     </Grid>
-</Grid>
 
 </Window>
