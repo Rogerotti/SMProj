@@ -177,7 +177,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\icon_256_256.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\CoreWindow.xaml">
       <SubType>Designer</SubType>
