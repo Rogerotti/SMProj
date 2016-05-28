@@ -23,29 +23,40 @@ namespace VJPlayer.Views
     /// </summary>
     public partial class YouTubePicker : Window
     {
+        private Semaphore semaphore;
         public YouTubePicker()
         {
             InitializeComponent();
+            semaphore = new Semaphore(1, 1);
         }
 
-        private async void DownloadTemporary_Click(object sender, RoutedEventArgs e)
+        private async void DownloadTemporaryClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                var youTube = YouTube.Default; // starting point for YouTube actions
-                
-                YouTubeVideo video = await youTube.GetVideoAsync(YouTubeLink.Text); // gets a Video object with info about the video
-                using (var stream = new FileStream(FileManagement.GetTempFolderFilePath(video.FullName), FileMode.OpenOrCreate))
-                using (var writer = new BinaryWriter(stream))
+                if (semaphore.WaitOne())
                 {
-                    var byteArray = video.GetBytes();
-                   // CancellationToken token
-                    await stream.WriteAsync(byteArray, 0, byteArray.Length,);
+                    progressRing.IsActive = true;
+                   
+                    var youTube = YouTube.Default; // starting point for YouTube actions
+
+                    YouTubeVideo video = await youTube.GetVideoAsync(YouTubeLink.Text); // gets a Video object with info about the video
+                    using (var stream = new FileStream(FileManagement.GetTempFolderFilePath(video.FullName), FileMode.OpenOrCreate))
+                    using (var writer = new BinaryWriter(stream))
+                    {
+                        var byteArray = await video.GetBytesAsync();
+                        await stream.WriteAsync(byteArray, 0, byteArray.Length);
+                    }
                 }
             }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.ToString());
+            }
+            finally
+            {
+                semaphore.Release();
+                progressRing.IsActive = false;
             }
         }
 
