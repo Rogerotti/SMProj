@@ -40,7 +40,7 @@ namespace VJPlayer.Views
                 {
                     var byteArray = video.GetBytes();
                    // CancellationToken token
-                    await stream.WriteAsync(byteArray, 0, byteArray.Length,);
+                    await stream.WriteAsync(byteArray, 0, byteArray.Length);
                 }
             }
             catch (Exception exc)
