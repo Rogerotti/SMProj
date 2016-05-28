@@ -1,8 +1,9 @@
-﻿using System;
+﻿using NReco.VideoConverter;
+using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
 
 namespace VJPlayer.Views
 {
@@ -27,6 +28,14 @@ namespace VJPlayer.Views
             }
         }
 
+        public string CurrentFormat
+        {
+            get
+            {
+                return FileFormat.SelectedValue as String;
+            }
+        }
+
         public YouTubePicker()
         {
             InitializeComponent();
@@ -40,6 +49,8 @@ namespace VJPlayer.Views
         private void DownloadTemporaryClick(object sender, RoutedEventArgs e)
         {
             OnPropertyChanged(nameof(YoutubePath));
+            OnPropertyChanged(nameof(FilePath));
+            OnPropertyChanged(nameof(CurrentFormat));
         }
 
         public void ShowProgress(bool show)
@@ -59,6 +70,7 @@ namespace VJPlayer.Views
         {
             OnPropertyChanged(nameof(YoutubePath));
             OnPropertyChanged(nameof(FilePath));
+            OnPropertyChanged(nameof(CurrentFormat));
         }
 
 
@@ -67,6 +79,12 @@ namespace VJPlayer.Views
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void SetFormats(IEnumerable<string> formats)
+        {
+            FileFormat.ItemsSource = formats;
+            FileFormat.SelectedIndex = 0;
         }
     }
 }

@@ -31,7 +31,9 @@
 
         <Label x:Name="youtubePathLabel" Grid.Row="0" Grid.Column="0"  Content="Youtube path:" Margin="10" Foreground="#FF0080FF"/>
         <TextBox x:Name="YouTubeLink" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
-
+        <ComboBox x:Name="FileFormat" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Height="25" Width="80">
+            
+        </ComboBox>
         <Label x:Name="targetPath" Grid.Row="1" Grid.Column="0" Content="Target path: " Margin="10" Foreground="#FF0080FF"/>
         <TextBox x:Name="Directory" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
         <Button x:Name="PickDirectory" Grid.Row="1" Grid.Column="2"  Click="PickDirectoryClick" Content="Pick directory" VerticalAlignment="Center" Margin="20,0,20,0"></Button>
@@ -41,7 +43,7 @@
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
                         <Binding  ElementName="YouTubeWindow" Path="YoutubePath"/>
-                        <Binding  ElementName="YouTubeWindow" Path="FilePath" />
+                        <Binding  ElementName="YouTubeWindow" Path="CurrentFormat" />
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
@@ -50,6 +52,7 @@
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
                         <Binding  ElementName="YouTubeWindow" Path="YoutubePath"/>
                         <Binding  ElementName="YouTubeWindow" Path="FilePath" />
+                        <Binding  ElementName="YouTubeWindow" Path="CurrentFormat" />
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
