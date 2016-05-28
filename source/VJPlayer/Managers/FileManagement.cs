@@ -18,6 +18,13 @@ namespace VJPlayer.Managers
             return Path.Combine(GetTempFilesPath(), fileName);
         }
 
+        public static String GetFolderFilePath(string path, string fileName)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            return Path.Combine(path, fileName);
+        }
+
         public static String GetTempFilesPath()
         {
             var tempFileFolderPath = Path.Combine(GetApplicationFolderPath(), TEMP_FOLDER);

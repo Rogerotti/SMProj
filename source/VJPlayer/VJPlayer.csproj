@@ -78,6 +78,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.2.4.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -107,6 +108,7 @@
     <Compile Include="Commands\MediaCommands\ChangeVolumeCommand.cs" />
     <Compile Include="Commands\BaseCommands\CloseWindowCommand.cs" />
     <Compile Include="Commands\MediaCommands\MediaCommand.cs" />
+    <Compile Include="Commands\MediaCommands\SpawnYouTubePickerCommand.cs" />
     <Compile Include="Commands\MediaCommands\ToggleLoopCommand.cs" />
     <Compile Include="Commands\BaseCommands\MinimizeWindowCommand.cs" />
     <Compile Include="Commands\MediaCommands\MuteCommand.cs" />
@@ -117,6 +119,9 @@
     <Compile Include="Commands\MediaCommands\StopCommand.cs" />
     <Compile Include="Commands\MediaCommands\Slider\SliderMiddleThumbDragCompletedCommand.cs" />
     <Compile Include="Commands\MediaCommands\Slider\SliderMiddleThumbDragStartedCommand.cs" />
+    <Compile Include="Commands\YouTubePickerCommands\DownloadCommand.cs" />
+    <Compile Include="Commands\YouTubePickerCommands\DownloadTemporaryCommand.cs" />
+    <Compile Include="Converters\DownloadConverter.cs" />
     <Compile Include="Converters\MediaModelIsPausedToVisibilityConverter.cs" />
     <Compile Include="Converters\MediaModelPlayingStateToVisibilityConverter.cs" />
     <Compile Include="Diagnostics\BindingErrorListener.cs" />
@@ -126,12 +131,14 @@
     <Compile Include="Models\MediaModelState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MediaViewModel.cs" />
+    <Compile Include="ViewModels\YouTubePickerViewModel.cs" />
     <Compile Include="Views\CoreWindow.xaml.cs">
       <DependentUpon>CoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomUserControls\ThreeThumbSlider.xaml.cs">
       <DependentUpon>ThreeThumbSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IYouTubePickerView.cs" />
     <Compile Include="Views\YouTubePicker.xaml.cs">
       <DependentUpon>YouTubePicker.xaml</DependentUpon>
     </Compile>
@@ -199,6 +206,7 @@
     <Resource Include="Resources\Images\play.png" />
     <Resource Include="Resources\Images\stop.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

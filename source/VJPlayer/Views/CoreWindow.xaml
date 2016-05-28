@@ -124,7 +124,7 @@
             <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="7" Grid.Row="1" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
             </ToggleButton>
 
-            <Button x:Name="youtubeButton"  Content="YT"   Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40"  Click="Button_Click">
+            <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40" >
             </Button>
             
             <Slider

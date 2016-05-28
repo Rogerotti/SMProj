@@ -5,10 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VJPlayer.Views"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:converters="clr-namespace:VJPlayer.Converters"
         mc:Ignorable="d"
         Background="#FF202020"
+        x:Name="YouTubeWindow"
  Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
         Title="VJPlayer" Height="220" Width="530">
+
+    <Window.Resources>
+        <converters:DownloadConverter x:Key="DownloadConverter"></converters:DownloadConverter>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,16 +30,29 @@
         </Grid.ColumnDefinitions>
 
         <Label x:Name="youtubePathLabel" Grid.Row="0" Grid.Column="0"  Content="Youtube path:" Margin="10" Foreground="#FF0080FF"/>
-        <TextBox x:Name="YouTubeLink"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
-
+        <TextBox x:Name="YouTubeLink" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
 
         <Label x:Name="targetPath" Grid.Row="1" Grid.Column="0" Content="Target path: " Margin="10" Foreground="#FF0080FF"/>
         <TextBox x:Name="Directory" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Width="270"></TextBox>
-        <Button x:Name="PickDirectory" Grid.Row="1" Grid.Column="2"  Click="PickDirectory_Click" Content="Pick directory" VerticalAlignment="Center" Margin="20,0,20,0"></Button>
+        <Button x:Name="PickDirectory" Grid.Row="1" Grid.Column="2"  Click="PickDirectoryClick" Content="Pick directory" VerticalAlignment="Center" Margin="20,0,20,0"></Button>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="20">
-            <Button x:Name="DownloadTemporary" Content="Download temporary" Click="DownloadTemporaryClick" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
-            <Button x:Name="Download" Content="Download" Click="Download_Click" VerticalAlignment="Center" Margin="10,0,0,0"></Button>
+            <Button x:Name="DownloadTemporary" Command="{Binding Path=DownloadTemporary}" Content="Download temporary" Click="DownloadTemporaryClick" VerticalAlignment="Center" Margin="10,0,0,0">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource DownloadConverter}">
+                        <Binding  ElementName="YouTubeWindow" Path="YoutubePath"/>
+                        <Binding  ElementName="YouTubeWindow" Path="FilePath" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button x:Name="Download" Content="Download" Command="{Binding Path=Download}" Click="Download_Click" VerticalAlignment="Center" Margin="10,0,0,0">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource DownloadConverter}">
+                        <Binding  ElementName="YouTubeWindow" Path="YoutubePath"/>
+                        <Binding  ElementName="YouTubeWindow" Path="FilePath" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
         </StackPanel>
         <Controls:ProgressRing  Grid.Row="2" Grid.Column="2"  x:Name="progressRing" VerticalAlignment="Center" Foreground="#FF0080FF" IsActive="False"></Controls:ProgressRing>
 

@@ -1,73 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using VideoLibrary;
-using VJPlayer.Managers;
+using System.Windows.Forms;
+
 
 namespace VJPlayer.Views
 {
     /// <summary>
     /// Interaction logic for YouTubePicker.xaml
     /// </summary>
-    public partial class YouTubePicker : Window
+    public partial class YouTubePicker : Window, IYouTubePickerView, INotifyPropertyChanged
     {
-        private Semaphore semaphore;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string YoutubePath
+        {
+            get { return YouTubeLink.Text; }
+        }
+
+
+        public string FilePath
+        {
+            get
+            {
+                return Directory.Text;
+            }
+        }
+
         public YouTubePicker()
         {
             InitializeComponent();
-            semaphore = new Semaphore(1, 1);
         }
 
-        private async void DownloadTemporaryClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Pobiera plik z youtube tymczasowo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DownloadTemporaryClick(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (semaphore.WaitOne())
-                {
-                    progressRing.IsActive = true;
-                   
-                    var youTube = YouTube.Default; // starting point for YouTube actions
-
-                    YouTubeVideo video = await youTube.GetVideoAsync(YouTubeLink.Text); // gets a Video object with info about the video
-                    using (var stream = new FileStream(FileManagement.GetTempFolderFilePath(video.FullName), FileMode.OpenOrCreate))
-                    using (var writer = new BinaryWriter(stream))
-                    {
-                        var byteArray = await video.GetBytesAsync();
-                        await stream.WriteAsync(byteArray, 0, byteArray.Length);
-                    }
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.ToString());
-            }
-            finally
-            {
-                semaphore.Release();
-                progressRing.IsActive = false;
-            }
+            OnPropertyChanged(nameof(YoutubePath));
         }
 
-        private void PickDirectory_Click(object sender, RoutedEventArgs e)
+        public void ShowProgress(bool show)
         {
+            progressRing.IsActive = show;
+        }
 
+        private void PickDirectoryClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new FolderBrowserDialog();
+            var result = dialog.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
+                Directory.Text = dialog.SelectedPath;
         }
 
         private void Download_Click(object sender, RoutedEventArgs e)
         {
+            OnPropertyChanged(nameof(YoutubePath));
+            OnPropertyChanged(nameof(FilePath));
+        }
 
+
+        protected virtual void OnPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+                handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -190,11 +190,5 @@ namespace VJPlayer.Views
             viewModel.ChangeVolumeCommand.Execute(mediaElement);
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window youtube = new YouTubePicker();
-            youtube.Show();
-        }
     }
 }

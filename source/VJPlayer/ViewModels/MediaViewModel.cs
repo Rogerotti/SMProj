@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using VJPlayer.Commands;
+using VJPlayer.Commands.MediaCommands;
 using VJPlayer.Models;
 
 namespace VJPlayer.ViewModels
@@ -23,6 +24,7 @@ namespace VJPlayer.ViewModels
         private ICommand thumbDragStartedCommand;
         private ICommand loopCommand;
         private ICommand changeVolumeCommand;
+        private ICommand spawnYouTubePickerCommand;
 
         public ICommand ChangeVolumeCommand
         {
@@ -114,9 +116,22 @@ namespace VJPlayer.ViewModels
             }
         }
 
+        public ICommand SpawnYouTubePickerCommand
+        {
+            get { return spawnYouTubePickerCommand; }
+            set
+            {
+                spawnYouTubePickerCommand = value;
+                OnPropertyChanged(nameof(SpawnYouTubePickerCommand));
+            }
+        }
+
+        
+
         public MediaViewModel()
         {
             MediaModel = new MediaModel();
+            SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel);
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);
             PauseCommand = new PauseCommand(MediaModel);
