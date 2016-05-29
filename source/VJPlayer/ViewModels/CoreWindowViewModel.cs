@@ -4,15 +4,17 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using VJPlayer.Commands;
 using VJPlayer.Commands.MediaCommands;
+using VJPlayer.Managers;
 using VJPlayer.Models;
 using VJPlayer.Views;
+using Microsoft.Practices.Unity;
 
 namespace VJPlayer.ViewModels
 {
     public class CoreWindowViewModel : BaseViewModel, ICoreWindowViewModel
     {
 
-        public MediaModel MediaModel { get; set; }
+        public IMediaModel MediaModel { get; set; }
 
         public EventHandler ManageMediaEndEvent;
 
@@ -130,11 +132,12 @@ namespace VJPlayer.ViewModels
         }
    
 
-        public CoreWindowViewModel(ICoreWindowView view)
+        public CoreWindowViewModel(ICoreWindowView view, IMediaModel model)
         {
             this.view = view;
             this.view.DataContext = this;
-            MediaModel = new MediaModel();
+
+            MediaModel = model;
             SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, PlayAfter);
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);

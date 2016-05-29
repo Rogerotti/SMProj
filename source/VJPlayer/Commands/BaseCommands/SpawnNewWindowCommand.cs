@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using System;
 using System.Windows.Input;
+using VJPlayer.Managers;
 using VJPlayer.ViewModels;
 
 namespace VJPlayer.Commands
@@ -20,7 +21,7 @@ namespace VJPlayer.Commands
 
         public void Execute(object parameter)
         {
-            App.Container.Resolve<CoreWindowViewModel>();
+            DependencyInjectionContainer.Container.Resolve<CoreWindowViewModel>();
         }
     }
 }

@@ -14,12 +14,12 @@ namespace VJPlayer.Commands.YouTubePickerCommands
     public class DownloadTemporaryCommand : MediaCommand
     {
         IYouTubePickerView view;
-        Action playAfter;
+        private  Action PlayAfter;
 
         public DownloadTemporaryCommand(IYouTubePickerView view, IMediaModel model, Action playAfter) : base(model)
         {
             this.view = view;
-            this.playAfter = playAfter;
+            PlayAfter = playAfter;
         }
 
         public override bool CanExecute(object parameter)
@@ -61,9 +61,7 @@ namespace VJPlayer.Commands.YouTubePickerCommands
                    mediaModel.ActualVideoPath = await ConvertFile(downloadedFilePath, fileFormat, true);
 
                 mediaModel.ActualVideoPath = downloadedFilePath;
-                playAfter.Invoke();
-
-
+                PlayAfter.Invoke();
             }
             catch (KeyNotFoundException)
             {

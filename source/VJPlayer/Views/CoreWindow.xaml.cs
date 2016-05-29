@@ -43,8 +43,10 @@ namespace VJPlayer.Views
         /// <param name="e"></param>
         private void UpdateSliderTick(object sender, EventArgs e)
         {
-            var viewModel = (CoreWindowViewModel)DataContext;
 
+            var viewModel = (ICoreWindowViewModel)DataContext;
+            if (viewModel == null)
+                return;
             object[] arrayOfObjects = new object[2];
             arrayOfObjects[0] = mediaElement;
             arrayOfObjects[1] = slider;

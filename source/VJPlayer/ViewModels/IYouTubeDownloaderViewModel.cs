@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 namespace VJPlayer.ViewModels
 {
@@ -7,6 +8,7 @@ namespace VJPlayer.ViewModels
     /// </summary>
     public interface IYouTubeDownloaderViewModel
     {
+        Action LaunchVideo { get; set; }
         /// <summary>
         /// Pobiera plik z youtube tymczasowo do momentu zamknięcia aplikacji.
         /// </summary>

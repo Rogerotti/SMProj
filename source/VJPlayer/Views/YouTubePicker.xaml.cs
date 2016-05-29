@@ -78,5 +78,9 @@ namespace VJPlayer.Views
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void ShowWindow()
+        {
+            Show();
+        }
     }
 }

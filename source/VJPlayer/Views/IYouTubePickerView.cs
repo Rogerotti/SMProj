@@ -32,5 +32,7 @@ namespace VJPlayer.Views
         /// </summary>
         /// <param name="formats">Lista formatów.</param>
         void SetFormats(IEnumerable<String> formats);
+
+        void ShowWindow();
     }
 }

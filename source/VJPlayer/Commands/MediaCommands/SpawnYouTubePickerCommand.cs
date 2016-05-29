@@ -2,12 +2,14 @@
 using VJPlayer.Models;
 using VJPlayer.ViewModels;
 using VJPlayer.Views;
+using Microsoft.Practices.Unity;
+using VJPlayer.Managers;
 
 namespace VJPlayer.Commands.MediaCommands
 {
     public class SpawnYouTubePickerCommand : MediaCommand
     {
-        Action playAfter;
+        private Action playAfter;
         public SpawnYouTubePickerCommand(IMediaModel mediaModel, Action playAfter) : base(mediaModel) { this.playAfter = playAfter; }
 
         public override bool CanExecute(object parameter)
@@ -17,9 +19,14 @@ namespace VJPlayer.Commands.MediaCommands
 
         public override void Execute(object parameter)
         {
-            var view = new YouTubePicker();
-            var viewModel = new YouTubeDownloaderViewModel(view, mediaModel, playAfter);
-            view.Show();
+          
+            UnityContainer container = new UnityContainer();
+            container.RegisterInstance(mediaModel);
+            container.RegisterType<IYouTubeDownloaderViewModel, YouTubeDownloaderViewModel>();
+            container.RegisterType<IYouTubePickerView, YouTubePicker>();
+            var res = container.Resolve<YouTubeDownloaderViewModel>();
+            res.LaunchVideo = playAfter;
+
         }
     }
 }

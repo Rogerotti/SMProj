@@ -13,6 +13,8 @@ namespace VJPlayer.ViewModels
         private readonly IMediaModel model;
         private readonly IYouTubePickerView view;
 
+        private Action playAfter;
+
         private ICommand downloadTemporary;
         private ICommand download;
 
@@ -35,14 +37,29 @@ namespace VJPlayer.ViewModels
                 OnPropertyChanged(nameof(Download));
             }
         }
-        public YouTubeDownloaderViewModel(IYouTubePickerView view, IMediaModel model, Action launchYouTubeFile)
+
+        public Action LaunchVideo
+        {
+            get
+            {
+                return playAfter;
+            }
+            set
+            {
+               playAfter = value;
+               DownloadTemporary = new DownloadTemporaryCommand(view, model, playAfter);
+            }
+        }
+
+        public YouTubeDownloaderViewModel(IYouTubePickerView view, IMediaModel model)
         {
             this.model = model;
             this.view = view;
             this.view.DataContext = this;
             this.view.SetFormats(getFormats());
-            DownloadTemporary = new DownloadTemporaryCommand(view, model, launchYouTubeFile);
+            DownloadTemporary = new DownloadTemporaryCommand(view, model, LaunchVideo);
             Download = new DownloadCommand(view, model);
+            view.ShowWindow();
         }
 
         private IEnumerable<string> getFormats()
@@ -57,8 +74,5 @@ namespace VJPlayer.ViewModels
             return formats;
         }
 
-        void AfterDownload()
-        {
-        }
     }
 }

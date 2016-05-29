@@ -141,6 +141,7 @@
     <Compile Include="Converters\MediaModelIsPausedToVisibilityConverter.cs" />
     <Compile Include="Converters\MediaModelPlayingStateToVisibilityConverter.cs" />
     <Compile Include="Diagnostics\BindingErrorListener.cs" />
+    <Compile Include="Managers\DependencyInjectionContainer.cs" />
     <Compile Include="Managers\FileManagement.cs" />
     <Compile Include="Models\IMediaModel.cs" />
     <Compile Include="Models\MediaModel.cs" />
