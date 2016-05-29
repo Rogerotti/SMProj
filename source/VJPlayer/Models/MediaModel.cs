@@ -9,6 +9,7 @@ namespace VJPlayer.Models
         private double volume = 0.5;
         private double totalLength = 100;
         private MediaModelState state;
+
         public int LowerThumbValue;
 
         public string ActualVideoPath { get; set; }
@@ -73,9 +74,6 @@ namespace VJPlayer.Models
                 }
             }
         }
-
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 

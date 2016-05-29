@@ -50,6 +50,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EffectsLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\EffectsLibrary\bin\Debug\EffectsLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="libvideo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\VideoLibrary.1.3.3\lib\portable-net45+win+wpa81+MonoAndroid10+xamarinios10+MonoTouch10\libvideo.dll</HintPath>
       <Private>True</Private>
@@ -124,6 +128,7 @@
     <Compile Include="Commands\MediaCommands\ChangeVolumeCommand.cs" />
     <Compile Include="Commands\BaseCommands\CloseWindowCommand.cs" />
     <Compile Include="Commands\MediaCommands\MediaCommand.cs" />
+    <Compile Include="Commands\MediaCommands\SpawnEffectPickerCommand.cs" />
     <Compile Include="Commands\MediaCommands\SpawnYouTubePickerCommand.cs" />
     <Compile Include="Commands\MediaCommands\ToggleLoopCommand.cs" />
     <Compile Include="Commands\BaseCommands\MinimizeWindowCommand.cs" />
@@ -143,10 +148,14 @@
     <Compile Include="Diagnostics\BindingErrorListener.cs" />
     <Compile Include="Managers\DependencyInjectionContainer.cs" />
     <Compile Include="Managers\FileManagement.cs" />
+    <Compile Include="Models\EffectModel.cs" />
+    <Compile Include="Models\IEffectModel.cs" />
     <Compile Include="Models\IMediaModel.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="Models\MediaModelState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EffectsViewModel.cs" />
+    <Compile Include="ViewModels\IEffectsViewModel.cs" />
     <Compile Include="ViewModels\ICoreWindowViewModel.cs" />
     <Compile Include="ViewModels\IYouTubeDownloaderViewModel.cs" />
     <Compile Include="ViewModels\CoreWindowViewModel.cs" />
@@ -156,6 +165,9 @@
     </Compile>
     <Compile Include="Views\CustomUserControls\ThreeThumbSlider.xaml.cs">
       <DependentUpon>ThreeThumbSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EffectPicker.xaml.cs">
+      <DependentUpon>EffectPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ICoreWindowView.cs" />
     <Compile Include="Views\IYouTubePickerView.cs" />
@@ -215,6 +227,10 @@
     <Page Include="Views\CustomUserControls\ThreeThumbSlider.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EffectPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\YouTubePicker.xaml">
       <SubType>Designer</SubType>

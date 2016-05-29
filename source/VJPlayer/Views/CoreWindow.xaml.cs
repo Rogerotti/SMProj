@@ -20,7 +20,7 @@ namespace VJPlayer.Views
 
         public MediaElement Player
         {
-            get{return mediaElement;}
+            get { return mediaElement; }
         }
 
         public CoreWindow()
@@ -34,6 +34,7 @@ namespace VJPlayer.Views
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
+
         }
 
         /// <summary>

@@ -10,6 +10,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:galasoft="GalaSoft.MvvmLight.Platform"
         xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:effects="clr-namespace:EffectsLibrary.Effects;assembly=EffectsLibrary"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="VJPlayer"
@@ -59,13 +60,12 @@
             Foreground="White"
             Text="Drop content here"
             />
-   
-
 
         <MediaElement x:Name="mediaElement"
                       LoadedBehavior="Manual"
                       ScrubbingEnabled="True"
-                      MediaEnded="mediaElement_MediaEnded"/>
+                      MediaEnded="mediaElement_MediaEnded">
+        </MediaElement>
 
         <Grid HorizontalAlignment="Stretch"
               Height="60"
@@ -126,11 +126,15 @@
 
             <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40" >
             </Button>
+
+            <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Width="40" Height="40">
+            </Button>
             
             <Slider
                 HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged"  Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Margin="5">
                 
             </Slider>
+            
         </Grid>
     </Grid>
     <wi:Interaction.Triggers>
