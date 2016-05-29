@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{577444BB-57AD-4824-8044-27F772AF075D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EffectsLibrary</RootNamespace>
+    <AssemblyName>EffectsLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EffectsLibrary.cs" />
+    <Compile Include="Effects\BandedSwirlEffect.cs" />
+    <Compile Include="Effects\BloomEffect.cs" />
+    <Compile Include="Effects\BrightExtractEffect.cs" />
+    <Compile Include="Effects\ColorKeyAlphaEffect.cs" />
+    <Compile Include="Effects\ColorToneEffect.cs" />
+    <Compile Include="Effects\ContrastAdjustEffect.cs" />
+    <Compile Include="Effects\DirectionalBlurEffect.cs" />
+    <Compile Include="Effects\EmbossedEffect.cs" />
+    <Compile Include="Effects\GloomEffect.cs" />
+    <Compile Include="Effects\GrowablePoissonDiskEffect.cs" />
+    <Compile Include="Effects\InvertColorEffect.cs" />
+    <Compile Include="Effects\LightStreakEffect.cs" />
+    <Compile Include="Effects\MagnifyEffect.cs" />
+    <Compile Include="Effects\MonochromeEffect.cs" />
+    <Compile Include="Effects\PinchEffect.cs" />
+    <Compile Include="Effects\PixelateEffect.cs" />
+    <Compile Include="Effects\RippleEffect.cs" />
+    <Compile Include="Effects\SharpenEffect.cs" />
+    <Compile Include="Effects\SmoothMagnifyEffect.cs" />
+    <Compile Include="Effects\SwirlEffect.cs" />
+    <Compile Include="Effects\ToneMappingEffect.cs" />
+    <Compile Include="Effects\ToonShaderEffect.cs" />
+    <Compile Include="Effects\ZoomBlurEffect.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Effects\Shaders\BandedSwirl.ps" />
+    <Resource Include="Effects\Shaders\Bloom.ps" />
+    <Resource Include="Effects\Shaders\BrightExtract.ps" />
+    <Resource Include="Effects\Shaders\ColorKeyAlpha.ps" />
+    <Resource Include="Effects\Shaders\ColorTone.ps" />
+    <Resource Include="Effects\Shaders\ContrastAdjust.ps" />
+    <Resource Include="Effects\Shaders\DirectionalBlur.ps" />
+    <Resource Include="Effects\Shaders\Embossed.ps" />
+    <Resource Include="Effects\Shaders\Gloom.ps" />
+    <Resource Include="Effects\Shaders\GrowablePoissonDisk.ps" />
+    <Resource Include="Effects\Shaders\InvertColor.ps" />
+    <Resource Include="Effects\Shaders\LightStreak.ps" />
+    <Resource Include="Effects\Shaders\Magnify.ps" />
+    <Resource Include="Effects\Shaders\Monochrome.ps" />
+    <Resource Include="Effects\Shaders\Pinch.ps" />
+    <Resource Include="Effects\Shaders\Pixelate.ps" />
+    <Resource Include="Effects\Shaders\Ripple.ps" />
+    <Resource Include="Effects\Shaders\Sharpen.ps" />
+    <Resource Include="Effects\Shaders\SmoothMagnify.ps" />
+    <Resource Include="Effects\Shaders\Swirl.ps" />
+    <Resource Include="Effects\Shaders\ToneMapping.ps" />
+    <Resource Include="Effects\Shaders\ToonShader.ps" />
+    <Resource Include="Effects\Shaders\ZoomBlur.ps" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Effects\Shaders\BandedSwirl.fx" />
+    <Content Include="Effects\Shaders\Bloom.fx" />
+    <Content Include="Effects\Shaders\BrightExtract.fx" />
+    <Content Include="Effects\Shaders\ColorKeyAlpha.fx" />
+    <Content Include="Effects\Shaders\ColorTone.fx" />
+    <Content Include="Effects\Shaders\ContrastAdjust.fx" />
+    <Content Include="Effects\Shaders\DirectionalBlur.fx" />
+    <Content Include="Effects\Shaders\Embossed.fx" />
+    <Content Include="Effects\Shaders\Gloom.fx" />
+    <Content Include="Effects\Shaders\GrowablePoissonDisk.fx" />
+    <Content Include="Effects\Shaders\InvertColor.fx" />
+    <Content Include="Effects\Shaders\LightStreak.fx" />
+    <Content Include="Effects\Shaders\Magnify.fx" />
+    <Content Include="Effects\Shaders\Monochrome.fx" />
+    <Content Include="Effects\Shaders\Pinch.fx" />
+    <Content Include="Effects\Shaders\Pixelate.fx" />
+    <Content Include="Effects\Shaders\Ripple.fx" />
+    <Content Include="Effects\Shaders\Sharpen.fx" />
+    <Content Include="Effects\Shaders\SmoothMagnify.fx" />
+    <Content Include="Effects\Shaders\Swirl.fx" />
+    <Content Include="Effects\Shaders\ToneMapping.fx" />
+    <Content Include="Effects\Shaders\ToonShader.fx" />
+    <Content Include="Effects\Shaders\ZoomBlur.fx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

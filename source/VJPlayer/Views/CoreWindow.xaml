@@ -10,6 +10,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:galasoft="GalaSoft.MvvmLight.Platform"
         xmlns:wi="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:effects="clr-namespace:EffectsLibrary.Effects;assembly=EffectsLibrary"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="VJPlayer"
@@ -59,13 +60,12 @@
             Foreground="White"
             Text="Drop content here"
             />
-   
-
 
         <MediaElement x:Name="mediaElement"
                       LoadedBehavior="Manual"
                       ScrubbingEnabled="True"
-                      MediaEnded="mediaElement_MediaEnded"/>
+                      MediaEnded="mediaElement_MediaEnded">
+        </MediaElement>
 
         <Grid HorizontalAlignment="Stretch"
               Height="60"
