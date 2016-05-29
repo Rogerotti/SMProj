@@ -1,5 +1,4 @@
-﻿using NReco.VideoConverter;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Forms;
@@ -8,7 +7,7 @@ using System.Collections.Generic;
 namespace VJPlayer.Views
 {
     /// <summary>
-    /// Interaction logic for YouTubePicker.xaml
+    /// Widok dla pobierania plików z youtube.
     /// </summary>
     public partial class YouTubePicker : Window, IYouTubePickerView, INotifyPropertyChanged
     {
@@ -19,26 +18,30 @@ namespace VJPlayer.Views
             get { return YouTubeLink.Text; }
         }
 
-
         public string FilePath
         {
-            get
-            {
-                return Directory.Text;
-            }
+            get { return Directory.Text; }
         }
 
         public string CurrentFormat
         {
-            get
-            {
-                return FileFormat.SelectedValue as String;
-            }
+            get { return FileFormat.SelectedValue as String; }
         }
 
         public YouTubePicker()
         {
             InitializeComponent();
+        }
+
+        public void ShowProgress(bool show)
+        {
+            progressRing.IsActive = show;
+        }
+
+        public void SetFormats(IEnumerable<string> formats)
+        {
+            FileFormat.ItemsSource = formats;
+            FileFormat.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -51,11 +54,6 @@ namespace VJPlayer.Views
             OnPropertyChanged(nameof(YoutubePath));
             OnPropertyChanged(nameof(FilePath));
             OnPropertyChanged(nameof(CurrentFormat));
-        }
-
-        public void ShowProgress(bool show)
-        {
-            progressRing.IsActive = show;
         }
 
         private void PickDirectoryClick(object sender, RoutedEventArgs e)
@@ -73,7 +71,6 @@ namespace VJPlayer.Views
             OnPropertyChanged(nameof(CurrentFormat));
         }
 
-
         protected virtual void OnPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -81,10 +78,5 @@ namespace VJPlayer.Views
                 handler.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void SetFormats(IEnumerable<string> formats)
-        {
-            FileFormat.ItemsSource = formats;
-            FileFormat.SelectedIndex = 0;
-        }
     }
 }

@@ -11,6 +11,8 @@ namespace VJPlayer.Models
         private MediaModelState state;
         public int LowerThumbValue;
 
+        public string ActualVideoPath { get; set; }
+
         /// <summary>
         /// Decyduje o zapętleniu aktualnie odtwarzanego utworu.
         /// </summary>
@@ -71,6 +73,9 @@ namespace VJPlayer.Models
                 }
             }
         }
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

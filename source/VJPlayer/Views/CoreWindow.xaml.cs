@@ -13,17 +13,21 @@ using VJPlayer.Managers;
 
 namespace VJPlayer.Views
 {
-    public partial class CoreWindow : Window
+    public partial class CoreWindow : Window, ICoreWindowView
     {
 
         private DispatcherTimer timer;
+
+        public MediaElement Player
+        {
+            get{return mediaElement;}
+        }
 
         public CoreWindow()
         {
             InitializeComponent();
 
             BindingErrorListener.Listen(m => MessageBox.Show(m));
-            DataContext = new MediaViewModel();
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
             timer = new DispatcherTimer();
@@ -39,7 +43,7 @@ namespace VJPlayer.Views
         /// <param name="e"></param>
         private void UpdateSliderTick(object sender, EventArgs e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
 
             object[] arrayOfObjects = new object[2];
             arrayOfObjects[0] = mediaElement;
@@ -66,7 +70,7 @@ namespace VJPlayer.Views
                 Uri uri;
                 System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
                 mediaElement.Source = uri;
-                var viewModel = (MediaViewModel)DataContext;
+                var viewModel = (CoreWindowViewModel)DataContext;
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
                     viewModel.PlayCommand.Execute(mediaElement);
@@ -115,7 +119,7 @@ namespace VJPlayer.Views
         private void SliderValueChanged(object sender, EventArgs e)
         {
             //TODO czas filmu
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             if (slider.MiddleSlider.Value >= slider.UpperSlider.Value)
             {
                 if (viewModel.MediaModel.Loop)
@@ -149,13 +153,13 @@ namespace VJPlayer.Views
 
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             viewModel.ManageMediaEndEvent.Invoke(mediaElement, EventArgs.Empty);
         }
 
         private void sliderMiddleSliderDragCompleted(object sender, EventArgs e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             object[] arrayOfObjects = new object[2];
             arrayOfObjects[0] = mediaElement;
             arrayOfObjects[1] = slider;
@@ -166,7 +170,7 @@ namespace VJPlayer.Views
 
         private void sliderMiddleSliderDragStarted(object sender, EventArgs e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             viewModel.ThumbDragStartedCommand.Execute(null);
         }
 
@@ -177,7 +181,7 @@ namespace VJPlayer.Views
 
         private void LowerSliderDragCompleted(object sender, EventArgs e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             object[] array = new object[2];
             array[0] = mediaElement;
             array[1] = slider.LowerValue;
@@ -186,9 +190,13 @@ namespace VJPlayer.Views
 
         private void VolumeValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            var viewModel = (MediaViewModel)DataContext;
+            var viewModel = (CoreWindowViewModel)DataContext;
             viewModel.ChangeVolumeCommand.Execute(mediaElement);
         }
 
+        public void ShowWindow()
+        {
+            Show();
+        }
     }
 }

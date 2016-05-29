@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Windows.Input;
-using VJPlayer.Views;
+using VJPlayer.ViewModels;
 
 namespace VJPlayer.Commands
 {
@@ -15,16 +15,12 @@ namespace VJPlayer.Commands
 
         public bool CanExecute(object parameter)
         {
-            var currentWindow = parameter as Window;
-            return currentWindow != null;
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            var currentWindow = parameter as Window;
-            CoreWindow newWindow = new CoreWindow();
-            newWindow.Show();
-
+            App.Container.Resolve<CoreWindowViewModel>();
         }
     }
 }
