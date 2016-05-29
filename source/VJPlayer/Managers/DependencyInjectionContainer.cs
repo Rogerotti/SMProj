@@ -23,6 +23,10 @@ namespace VJPlayer.Managers
             Container.RegisterType<IMediaModel, MediaModel>();
             Container.RegisterType<ICoreWindowView, CoreWindow>();
             Container.RegisterType<ICoreWindowViewModel, CoreWindowViewModel>();
+
+            Container.RegisterType<IEffectsViewModel, EffectsViewModel>();
+            Container.RegisterType<IEffectPickerView, EffectPicker>();
+
             Container.Resolve<CoreWindowViewModel>();
         }
     }

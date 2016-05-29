@@ -61,11 +61,13 @@
             Text="Drop content here"
             />
 
-        <MediaElement x:Name="mediaElement"
-                      LoadedBehavior="Manual"
-                      ScrubbingEnabled="True"
-                      MediaEnded="mediaElement_MediaEnded">
-        </MediaElement>
+        <Grid x:Name="EffectGrid">
+            <MediaElement x:Name="mediaElement"
+                          LoadedBehavior="Manual"
+                          ScrubbingEnabled="True"
+                          MediaEnded="mediaElement_MediaEnded">
+            </MediaElement>
+        </Grid>
 
         <Grid HorizontalAlignment="Stretch"
               Height="60"
@@ -127,7 +129,7 @@
             <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40" >
             </Button>
 
-            <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Width="40" Height="40">
+            <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}"  CommandParameter="{Binding ElementName=mediaElement}" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Width="40" Height="40">
             </Button>
             
             <Slider

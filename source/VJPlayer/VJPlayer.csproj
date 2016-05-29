@@ -155,6 +155,7 @@
     <Compile Include="Models\MediaModelState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\EffectsViewModel.cs" />
+    <Compile Include="Views\IEffectPickerView.cs" />
     <Compile Include="ViewModels\IEffectsViewModel.cs" />
     <Compile Include="ViewModels\ICoreWindowViewModel.cs" />
     <Compile Include="ViewModels\IYouTubeDownloaderViewModel.cs" />

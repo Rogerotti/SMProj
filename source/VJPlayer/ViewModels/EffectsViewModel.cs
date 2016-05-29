@@ -6,23 +6,29 @@ using System.Text;
 using System.Threading.Tasks;
 using VJPlayer.Models;
 using VJPlayer.Views;
+using System.Windows.Controls;
+using System.Windows.Media.Effects;
+using System.Windows;
 
 namespace VJPlayer.ViewModels
 {
     class EffectsViewModel : BaseViewModel, IEffectsViewModel
     {
-        public List<IEffectModel> Effects { get; set; }
+        public IList<IEffectModel> Effects { get; set; }
 
         private readonly IMediaModel model;
-        private readonly EffectPicker view;
+        private readonly IEffectPickerView view;
 
-        public EffectsViewModel(List<IEffectModel> effects, IMediaModel model, EffectPicker view)
+        private MediaElement mediaElement;
+
+        public EffectsViewModel( IMediaModel model, IEffectPickerView view)
         {
-            Effects = effects;
-            addEffects();
+            Effects = new List<IEffectModel>();
             this.model = model;
             this.view = view;
             this.view.DataContext = this;
+            addEffects();
+            view.EffectChecked = ApplyEffects;
         }
 
         private void addEffects()
@@ -51,5 +57,64 @@ namespace VJPlayer.ViewModels
             Effects.Add(new EffectModel() { Effect = new ToonShaderEffect(), Name = "Toon Shader", IsActive = false });
             Effects.Add(new EffectModel() { Effect = new ZoomBlurEffect(), Name = "Zoom Blur", IsActive = false });
         }
+
+        public void Initialize(MediaElement element)
+        {
+            mediaElement = element;
+            view.ShowWindow();
+        }
+
+        private void ApplyEffects()
+        {
+            Effect effect = null;
+            List<Effect> activeEffects = new List<Effect>();
+            try
+            {
+                foreach (var item in Effects)
+                {
+                    if (item.IsActive == true)
+                        activeEffects.Add(item.Effect);
+                }
+                if (activeEffects.Count != 0)
+                {
+                    Grid grid = mediaElement.Parent as Grid;
+                    while (grid.Name != "EffectGrid")
+                    {
+                        grid.Children.Clear();
+                        grid = grid.Parent as Grid;
+
+                    }
+
+                    grid.Children.Clear();
+
+
+                    mediaElement.Effect = activeEffects[0];
+                    for (int i = 1; i < activeEffects.Count; i++)
+                    {
+                        Grid grid2 = new Grid();
+                        grid2.Effect = activeEffects[i];
+                        grid.Children.Add(grid2);
+                        grid = grid2;
+                    }
+                    grid.Children.Add(mediaElement);
+                    //grid.Children.Add(mediaElement);
+                    //for (int i = 0; i < activeEffects.Count; i++)
+                    //{
+                    //    grid.Children[i].Effect = activeEffects[i];
+                    //    grid.Children.Add(new Grid());
+                    //}
+                }
+
+            }
+            catch (Exception) {}
+            finally
+            {
+       
+
+            }
+
+              
+        }
+
     }
 }

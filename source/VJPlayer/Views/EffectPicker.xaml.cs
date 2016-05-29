@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using VJPlayer.ViewModels;
 
 namespace VJPlayer.Views
@@ -18,15 +7,29 @@ namespace VJPlayer.Views
     /// <summary>
     /// Interaction logic for EffectPicker.xaml
     /// </summary>
-    public partial class EffectPicker : Window
+    public partial class EffectPicker : Window , IEffectPickerView
     {
         public EffectPicker()
         {
             InitializeComponent();
+        }
 
-            var viewModel = (EffectsViewModel)DataContext;
+        public Action EffectChecked
+        {
+            get;
+            set;
+        }
 
+        public void ShowWindow()
+        {
+            var viewModel = (IEffectsViewModel)DataContext;
             effectsListBox.ItemsSource = viewModel.Effects;
+            Show();
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            EffectChecked.Invoke();
         }
     }
 }

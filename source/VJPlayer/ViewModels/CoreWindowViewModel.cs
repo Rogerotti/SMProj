@@ -18,8 +18,6 @@ namespace VJPlayer.ViewModels
 
         public IMediaModel MediaModel { get; set; }
 
-        public List<IEffectModel> Effects { get; set; }
-
         public EventHandler ManageMediaEndEvent;
 
         private ICoreWindowView view;
@@ -152,9 +150,8 @@ namespace VJPlayer.ViewModels
             this.view = view;
             this.view.DataContext = this;
             MediaModel = model;
-	    Effects = new List<IEffectModel>();
             SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, PlayAfter);
-            SpawnEffectPickerCommand = new SpawnEffectPickerCommand(MediaModel, Effects);
+            SpawnEffectPickerCommand = new SpawnEffectPickerCommand(MediaModel);
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);
             PauseCommand = new PauseCommand(MediaModel);
@@ -188,6 +185,11 @@ namespace VJPlayer.ViewModels
             mediaElement.Source = uri;
             if(playCommand.CanExecute(mediaElement))
                 playCommand.Execute(mediaElement);
+        }
+
+        private void ApplyEfects()
+        {
+
         }
     }
 }

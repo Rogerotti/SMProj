@@ -10,6 +10,7 @@ using VideoLibrary;
 using System.IO;
 using System.Security.Permissions;
 using VJPlayer.Managers;
+using EffectsLibrary.Effects;
 
 namespace VJPlayer.Views
 {
@@ -34,7 +35,6 @@ namespace VJPlayer.Views
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
-
         }
 
         /// <summary>

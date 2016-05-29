@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using VJPlayer.Models;
 
 namespace VJPlayer.ViewModels
 {
-    interface IEffectsViewModel
+    public interface IEffectsViewModel
     {
-        List<IEffectModel> Effects { get; set; }
+        IList<IEffectModel> Effects { get; set; }
+
+        void Initialize(MediaElement element);
     }
 }

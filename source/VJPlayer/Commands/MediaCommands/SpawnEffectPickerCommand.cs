@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using VJPlayer.Managers;
 using VJPlayer.Models;
 using VJPlayer.ViewModels;
 using VJPlayer.Views;
+using Microsoft.Practices.Unity;
+using System.Windows.Controls;
 
 namespace VJPlayer.Commands.MediaCommands
 {
     public class SpawnEffectPickerCommand : MediaCommand
     {
-        private List<IEffectModel> effects;
 
-        public SpawnEffectPickerCommand(IMediaModel mediaModel, List<IEffectModel> effects) : base(mediaModel)
+        public SpawnEffectPickerCommand(IMediaModel mediaModel) : base(mediaModel)
         {
-            this.effects = effects;
         }
 
         public override bool CanExecute(object parameter)
@@ -22,9 +23,12 @@ namespace VJPlayer.Commands.MediaCommands
 
         public override void Execute(object parameter)
         {
-            var view = new EffectPicker();
-            var viewModel = new EffectsViewModel(effects, mediaModel, view);
-            view.Show();
+            var mediaElement = parameter as MediaElement;
+            var viewModel = DependencyInjectionContainer.Container.Resolve<IEffectsViewModel>();
+            viewModel.Initialize(mediaElement);
+           // var view = new EffectPicker();
+           // var viewModel = new EffectsViewModel(effects, mediaModel, view);
+           //  view.Show();
         }
     }
 }
