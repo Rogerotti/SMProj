@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EffectsLibrary.Effects;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -14,6 +16,8 @@ namespace VJPlayer.ViewModels
 
         public MediaModel MediaModel { get; set; }
 
+        public List<IEffectModel> Effects { get; set; }
+
         public EventHandler ManageMediaEndEvent;
 
         private ICoreWindowView view;
@@ -28,6 +32,7 @@ namespace VJPlayer.ViewModels
         private ICommand loopCommand;
         private ICommand changeVolumeCommand;
         private ICommand spawnYouTubePickerCommand;
+        private ICommand spawnEffectPickerCommand;
 
         public ICommand ChangeVolumeCommand
         {
@@ -128,14 +133,26 @@ namespace VJPlayer.ViewModels
                 OnPropertyChanged(nameof(SpawnYouTubePickerCommand));
             }
         }
-   
+
+        public ICommand SpawnEffectPickerCommand
+        {
+            get { return spawnEffectPickerCommand; }
+            set
+            {
+                spawnEffectPickerCommand = value;
+                OnPropertyChanged(nameof(SpawnEffectPickerCommand));
+            }
+        }
+
 
         public CoreWindowViewModel(ICoreWindowView view)
         {
             this.view = view;
             this.view.DataContext = this;
             MediaModel = new MediaModel();
+            Effects = new List<IEffectModel>();
             SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, PlayAfter);
+            SpawnEffectPickerCommand = new SpawnEffectPickerCommand(MediaModel, Effects);
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);
             PauseCommand = new PauseCommand(MediaModel);
