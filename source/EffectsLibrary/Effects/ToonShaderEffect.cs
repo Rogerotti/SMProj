@@ -52,7 +52,6 @@ namespace EffectsLibrary.Effects
             // Just saying hardware only for now since our drop of sw doesn't have sin/cos in
             // it, and thus we can't validate against that.
 #if !SILVERLIGHT 
-            // TODO: 
             pixelShader.ShaderRenderMode = ShaderRenderMode.HardwareOnly;
 #endif 
         }

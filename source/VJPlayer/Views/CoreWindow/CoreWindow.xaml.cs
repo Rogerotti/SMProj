@@ -44,7 +44,6 @@ namespace VJPlayer.Views
         /// <param name="e"></param>
         private void UpdateSliderTick(object sender, EventArgs e)
         {
-
             var viewModel = (ICoreWindowViewModel)DataContext;
             if (viewModel == null)
                 return;
@@ -77,7 +76,6 @@ namespace VJPlayer.Views
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
                     viewModel.PlayCommand.Execute(mediaElement);
-
             }
             CommandManager.InvalidateRequerySuggested();
             Focus();

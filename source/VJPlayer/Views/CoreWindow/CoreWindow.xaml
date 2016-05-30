@@ -25,7 +25,6 @@
         MinHeight="90"
         ResizeMode="CanResizeWithGrip"
         Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
-        Closing="Window_Closing"
     >
     <Window.Resources>
         <converters:MediaModelPlayingStateToVisibilityConverter x:Key="PlayingConverter"></converters:MediaModelPlayingStateToVisibilityConverter>
