@@ -4,6 +4,7 @@ using VJPlayer.Models;
 using VJPlayer.ViewModels;
 using Microsoft.Practices.Unity;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace VJPlayer.Commands.MediaCommands
 {
@@ -24,8 +25,11 @@ namespace VJPlayer.Commands.MediaCommands
             var array = parameter as object[];
             var mediaElement = array[0] as MediaElement;
             var list = array[1] as IList<IEffectModel>;
+            var window = array[2] as Window;
             var viewModel = DependencyInjectionContainer.Container.Resolve<IEffectsViewModel>();
+            
             viewModel.Initialize(list, mediaElement);
+            viewModel.SetOwner(window);
         }
     }
 }

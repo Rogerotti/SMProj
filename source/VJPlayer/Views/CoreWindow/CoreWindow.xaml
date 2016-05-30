@@ -13,6 +13,7 @@
         xmlns:effects="clr-namespace:EffectsLibrary.Effects;assembly=EffectsLibrary"
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
+        x:Name="coreWindow"
         Title="VJPlayer"
         Width="600"
         Height="350"
@@ -24,6 +25,7 @@
         MinHeight="90"
         ResizeMode="CanResizeWithGrip"
         Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
+        Closing="Window_Closing"
     >
     <Window.Resources>
         <converters:MediaModelPlayingStateToVisibilityConverter x:Key="PlayingConverter"></converters:MediaModelPlayingStateToVisibilityConverter>
@@ -137,6 +139,7 @@
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
                         <Binding  ElementName="mediaElement"/>
                         <Binding  Path="Effects" />
+                        <Binding  ElementName="coreWindow" />
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>

@@ -16,6 +16,11 @@ namespace VJPlayer.Views
 
         public Action EffectChecked { get; set; }
 
+        public void SetOwner(Window window)
+        {
+            Owner = window;
+        }
+
         public void ShowWindow()
         {
             var viewModel = (IEffectsViewModel)DataContext;

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 using VJPlayer.Models;
+using System.Windows;
 
 namespace VJPlayer.ViewModels
 {
@@ -54,44 +55,12 @@ namespace VJPlayer.ViewModels
                 grid2 = grid2.Parent as Grid;
             }
     
-            //try
-            //{
-            //    var pos = mediaElement.Position;
-            //    foreach (var item in Effects)
-            //    {
-            //        if (item.IsActive == true)
-            //            activeEffects.Add(item.Effect);
-            //    }
-            //    if (activeEffects.Count != 0)
-            //    {
-            //        Grid grid = mediaElement.Parent as Grid;
-            //        while (grid.Name != "EffectGrid")
-            //        {
-            //            grid.Children.Clear();
-            //            grid = grid.Parent as Grid;
-            //        }
-
-            //        grid.Children.Clear();
-
-            //        mediaElement.Effect = activeEffects[0];
-            //        for (int i = 1; i < activeEffects.Count; i++)
-            //        {
-            //            Grid grid2 = new Grid();
-            //            grid2.Effect = activeEffects[i];
-            //            grid.Children.Add(grid2);
-            //            grid = grid2;
-            //        }
-            //        grid.Children.Add(mediaElement);
-            //        mediaElement.Position = pos;
-
-            //    }
-            //    else
-            //        mediaElement.Effect = null;
-
-            //}
-            //catch (Exception) { }
         }
 
- 
+
+        public void SetOwner(Window window)
+        {
+            view.SetOwner(window);
+        }
     }
 }
