@@ -147,32 +147,32 @@
     <Compile Include="Converters\MediaModelPlayingStateToVisibilityConverter.cs" />
     <Compile Include="Diagnostics\BindingErrorListener.cs" />
     <Compile Include="Managers\DependencyInjectionContainer.cs" />
-    <Compile Include="Managers\FileManagement.cs" />
+    <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Models\EffectModel.cs" />
     <Compile Include="Models\IEffectModel.cs" />
     <Compile Include="Models\IMediaModel.cs" />
     <Compile Include="Models\MediaModel.cs" />
     <Compile Include="Models\MediaModelState.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\EffectsViewModel.cs" />
-    <Compile Include="Views\IEffectPickerView.cs" />
-    <Compile Include="ViewModels\IEffectsViewModel.cs" />
-    <Compile Include="ViewModels\ICoreWindowViewModel.cs" />
-    <Compile Include="ViewModels\IYouTubeDownloaderViewModel.cs" />
-    <Compile Include="ViewModels\CoreWindowViewModel.cs" />
-    <Compile Include="ViewModels\YouTubeDownloaderViewModel.cs" />
-    <Compile Include="Views\CoreWindow.xaml.cs">
+    <Compile Include="ViewModels\EffectPicker\EffectsViewModel.cs" />
+    <Compile Include="Views\EffectPicker\IEffectPickerView.cs" />
+    <Compile Include="ViewModels\EffectPicker\IEffectsViewModel.cs" />
+    <Compile Include="ViewModels\CoreWindow\ICoreWindowViewModel.cs" />
+    <Compile Include="ViewModels\YouTubePicker\IYouTubeDownloaderViewModel.cs" />
+    <Compile Include="ViewModels\CoreWindow\CoreWindowViewModel.cs" />
+    <Compile Include="ViewModels\YouTubePicker\YouTubeDownloaderViewModel.cs" />
+    <Compile Include="Views\CoreWindow\CoreWindow.xaml.cs">
       <DependentUpon>CoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CustomUserControls\ThreeThumbSlider.xaml.cs">
       <DependentUpon>ThreeThumbSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EffectPicker.xaml.cs">
+    <Compile Include="Views\EffectPicker\EffectPicker.xaml.cs">
       <DependentUpon>EffectPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ICoreWindowView.cs" />
-    <Compile Include="Views\IYouTubePickerView.cs" />
-    <Compile Include="Views\YouTubePicker.xaml.cs">
+    <Compile Include="Views\CoreWindow\ICoreWindowView.cs" />
+    <Compile Include="Views\YouTubePicker\IYouTubePickerView.cs" />
+    <Compile Include="Views\YouTubePicker\YouTubePicker.xaml.cs">
       <DependentUpon>YouTubePicker.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -194,7 +194,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -221,7 +220,7 @@
     <Resource Include="Resources\Images\icon_256_256.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\CoreWindow.xaml">
+    <Page Include="Views\CoreWindow\CoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,11 +228,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EffectPicker.xaml">
+    <Page Include="Views\EffectPicker\EffectPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\YouTubePicker.xaml">
+    <Page Include="Views\YouTubePicker\YouTubePicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

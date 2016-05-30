@@ -1,10 +1,8 @@
 ﻿using System;
 using VJPlayer.Models;
 using VJPlayer.ViewModels;
-using VJPlayer.Views;
 using Microsoft.Practices.Unity;
 using VJPlayer.Managers;
-using System.Windows.Controls;
 
 namespace VJPlayer.Commands.MediaCommands
 {

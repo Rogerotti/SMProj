@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VJPlayer.Managers
 {
-    public static class FileManagement
+    public static class FileManager
     {
         private const String MAIN_FOLDER_NAME = "VJPlayer";
         private const String TEMP_FOLDER = "Temp";

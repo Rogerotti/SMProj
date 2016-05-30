@@ -1,10 +1,4 @@
-﻿using EffectsLibrary.Effects;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Media.Effects;
 
 namespace VJPlayer.Models

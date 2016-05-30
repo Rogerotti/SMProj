@@ -7,18 +7,14 @@ namespace VJPlayer.Views
     /// <summary>
     /// Interaction logic for EffectPicker.xaml
     /// </summary>
-    public partial class EffectPicker : Window , IEffectPickerView
+    public partial class EffectPicker : Window, IEffectPickerView
     {
         public EffectPicker()
         {
             InitializeComponent();
         }
 
-        public Action EffectChecked
-        {
-            get;
-            set;
-        }
+        public Action EffectChecked { get; set; }
 
         public void ShowWindow()
         {
@@ -27,7 +23,7 @@ namespace VJPlayer.Views
             Show();
         }
 
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        private void CheckBoxClick(object sender, RoutedEventArgs e)
         {
             EffectChecked.Invoke();
         }

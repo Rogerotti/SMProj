@@ -55,7 +55,7 @@ namespace VJPlayer.Commands.YouTubePickerCommands
                 var youTube = YouTube.Default;
                 YouTubeVideo video = await youTube.GetVideoAsync(youtubePath); // gets a Video object with info about the video
 
-                var downloadedFilePath = FileManagement.GetFolderFilePath(filePath, video.FullName);
+                var downloadedFilePath = FileManager.GetFolderFilePath(filePath, video.FullName);
 
                 using (var stream = new FileStream(downloadedFilePath, FileMode.OpenOrCreate))
                 using (var writer = new BinaryWriter(stream))
@@ -65,7 +65,7 @@ namespace VJPlayer.Commands.YouTubePickerCommands
                 }
 
                 if (fileFormat != Format.mp4)
-                   await ConvertFile(downloadedFilePath, fileFormat, true);
+                    await ConvertFile(downloadedFilePath, fileFormat, true);
 
             }
             catch (KeyNotFoundException)
@@ -98,7 +98,7 @@ namespace VJPlayer.Commands.YouTubePickerCommands
             var ffMpegConverter = new FFMpegConverter();
             var newPath = Path.ChangeExtension(filePath, newFormat);
             await Task.Run(() => { ffMpegConverter.ConvertMedia(filePath, newPath, newFormat); });
-            if(deleteOldFile)
+            if (deleteOldFile)
                 File.Delete(filePath);
         }
     }

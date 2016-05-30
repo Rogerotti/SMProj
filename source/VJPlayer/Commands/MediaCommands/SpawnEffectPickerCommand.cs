@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using VJPlayer.Managers;
 using VJPlayer.Models;
 using VJPlayer.ViewModels;
-using VJPlayer.Views;
 using Microsoft.Practices.Unity;
 using System.Windows.Controls;
 
@@ -23,12 +21,11 @@ namespace VJPlayer.Commands.MediaCommands
 
         public override void Execute(object parameter)
         {
-            var mediaElement = parameter as MediaElement;
+            var array = parameter as object[];
+            var mediaElement = array[0] as MediaElement;
+            var list = array[1] as IList<IEffectModel>;
             var viewModel = DependencyInjectionContainer.Container.Resolve<IEffectsViewModel>();
-            viewModel.Initialize(mediaElement);
-           // var view = new EffectPicker();
-           // var viewModel = new EffectsViewModel(effects, mediaModel, view);
-           //  view.Show();
+            viewModel.Initialize(list, mediaElement);
         }
     }
 }

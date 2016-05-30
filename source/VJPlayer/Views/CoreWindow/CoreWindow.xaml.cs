@@ -27,8 +27,8 @@ namespace VJPlayer.Views
         public CoreWindow()
         {
             InitializeComponent();
-
             BindingErrorListener.Listen(m => MessageBox.Show(m));
+
             Drop += CoreWindow_Drop;
             MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
             timer = new DispatcherTimer();

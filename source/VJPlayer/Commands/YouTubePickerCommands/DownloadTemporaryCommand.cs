@@ -48,7 +48,7 @@ namespace VJPlayer.Commands.YouTubePickerCommands
 
                 var youTube = YouTube.Default;
                 YouTubeVideo video = await youTube.GetVideoAsync(youtubePath); // gets a Video object with info about the video
-                var downloadedFilePath = FileManagement.GetTempFolderFilePath(video.FullName);
+                var downloadedFilePath = FileManager.GetTempFolderFilePath(video.FullName);
 
                 using (var stream = new FileStream(downloadedFilePath, FileMode.OpenOrCreate))
                 using (var writer = new BinaryWriter(stream))

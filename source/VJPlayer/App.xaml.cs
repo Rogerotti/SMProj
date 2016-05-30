@@ -12,21 +12,19 @@ namespace VJPlayer
     public partial class App : Application
     {
         public static UnityContainer Container;
+        private void ApplicationStartup(object sender, StartupEventArgs e)
+        {
+            DependencyInjectionContainer.RegisterContainer();
+        }
+
         private void ApplicationExit(object sender, ExitEventArgs e)
         {
             try
             {
-                var tempFolderPath = FileManagement.GetTempFilesPath();
+                var tempFolderPath = FileManager.GetTempFilesPath();
                 Directory.Delete(tempFolderPath, true);
             }
-            catch (Exception)
-            {
-            };
-        }
-
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            DependencyInjectionContainer.RegisterContainer();
+            catch (Exception) { };
         }
     }
 }

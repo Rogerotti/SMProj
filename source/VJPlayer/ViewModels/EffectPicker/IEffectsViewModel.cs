@@ -12,6 +12,6 @@ namespace VJPlayer.ViewModels
     {
         IList<IEffectModel> Effects { get; set; }
 
-        void Initialize(MediaElement element);
+        void Initialize(IList<IEffectModel> effects, MediaElement element);
     }
 }
