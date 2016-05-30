@@ -4,6 +4,7 @@ using VJPlayer.ViewModels;
 using VJPlayer.Views;
 using Microsoft.Practices.Unity;
 using VJPlayer.Managers;
+using System.Windows.Controls;
 
 namespace VJPlayer.Commands.MediaCommands
 {
@@ -19,14 +20,9 @@ namespace VJPlayer.Commands.MediaCommands
 
         public override void Execute(object parameter)
         {
-          
-            UnityContainer container = new UnityContainer();
-            container.RegisterInstance(mediaModel);
-            container.RegisterType<IYouTubeDownloaderViewModel, YouTubeDownloaderViewModel>();
-            container.RegisterType<IYouTubePickerView, YouTubePicker>();
-            var res = container.Resolve<YouTubeDownloaderViewModel>();
+            var res = DependencyInjectionContainer.Container.Resolve<IYouTubeDownloaderViewModel>();
+            res.Initialize(mediaModel);
             res.LaunchVideo = playAfter;
-
         }
     }
 }

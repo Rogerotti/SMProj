@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using VJPlayer.Models;
 
 namespace VJPlayer.ViewModels
 {
@@ -18,5 +19,7 @@ namespace VJPlayer.ViewModels
         /// Pobiera plik z youtube na dysk o podanej ścieżce.
         /// </summary>
         ICommand Download { get; set; }
+
+        void Initialize(IMediaModel model);
     }
 }

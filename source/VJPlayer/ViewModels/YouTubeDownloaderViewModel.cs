@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using VJPlayer.Commands;
 using VJPlayer.Commands.YouTubePickerCommands;
 using VJPlayer.Models;
 using VJPlayer.Views;
@@ -10,30 +11,33 @@ namespace VJPlayer.ViewModels
 {
     public class YouTubeDownloaderViewModel : BaseViewModel, IYouTubeDownloaderViewModel
     {
-        private readonly IMediaModel model;
+        
         private readonly IYouTubePickerView view;
 
-        private Action playAfter;
+        private Action launchVideo;
 
-        private ICommand downloadTemporary;
-        private ICommand download;
+        private IMediaModel model;
+
+        private ICommand downloadCommand;
+        private ICommand downloadTemporaryCommand;
+       
 
         public ICommand DownloadTemporary
         {
-            get { return downloadTemporary; }
+            get { return downloadTemporaryCommand; }
             set
             {
-                downloadTemporary = value;
+                downloadTemporaryCommand = value;
                 OnPropertyChanged(nameof(DownloadTemporary));
             }
         }
 
         public ICommand Download
         {
-            get { return download; }
+            get { return downloadCommand; }
             set
             {
-                download = value;
+                downloadCommand = value;
                 OnPropertyChanged(nameof(Download));
             }
         }
@@ -42,24 +46,22 @@ namespace VJPlayer.ViewModels
         {
             get
             {
-                return playAfter;
+                return launchVideo;
             }
             set
             {
-               playAfter = value;
-               DownloadTemporary = new DownloadTemporaryCommand(view, model, playAfter);
+               launchVideo = value;
+               DownloadTemporary = new DownloadTemporaryCommand(view, model, launchVideo);
             }
         }
 
-        public YouTubeDownloaderViewModel(IYouTubePickerView view, IMediaModel model)
+
+        public YouTubeDownloaderViewModel(IYouTubePickerView view)
         {
-            this.model = model;
             this.view = view;
             this.view.DataContext = this;
             this.view.SetFormats(getFormats());
-            DownloadTemporary = new DownloadTemporaryCommand(view, model, LaunchVideo);
-            Download = new DownloadCommand(view, model);
-            view.ShowWindow();
+
         }
 
         private IEnumerable<string> getFormats()
@@ -74,5 +76,15 @@ namespace VJPlayer.ViewModels
             return formats;
         }
 
+        public void Initialize(IMediaModel model)
+        {
+          
+            if (model == null) throw new ArgumentNullException(nameof(model));
+
+            this.model = model;
+            DownloadTemporary = new DownloadTemporaryCommand(view, model, LaunchVideo);
+            Download = new DownloadCommand(view, model);
+            view.ShowWindow();
+        }
     }
 }
