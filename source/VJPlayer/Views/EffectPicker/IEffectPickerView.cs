@@ -1,14 +1,12 @@
 ﻿using Microsoft.Practices.Prism.Mvvm;
 using System;
-using System.Windows;
+using VJPlayer.Interfaces;
 
-namespace VJPlayer.ViewModels
+namespace VJPlayer.Views
 {
-    public interface IEffectPickerView : IView
+    public interface IEffectPickerView : IView, IOwnable
     {
         Action EffectChecked { get; set; }
-
-        void SetOwner(Window window);
 
         void ShowWindow();
     }

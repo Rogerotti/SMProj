@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using VJPlayer.Interfaces;
 using VJPlayer.Models;
 
 namespace VJPlayer.ViewModels
@@ -7,7 +9,7 @@ namespace VJPlayer.ViewModels
     /// <summary>
     /// View model dla pobierania filmów z youtube.
     /// </summary>
-    public interface IYouTubeDownloaderViewModel
+    public interface IYouTubeDownloaderViewModel : IOwnable
     {
         Action LaunchVideo { get; set; }
         /// <summary>

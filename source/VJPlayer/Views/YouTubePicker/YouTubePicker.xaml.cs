@@ -82,5 +82,10 @@ namespace VJPlayer.Views
         {
             Show();
         }
+
+        public void SetOwner(Window window)
+        {
+            Owner = window;
+        }
     }
 }

@@ -12,6 +12,7 @@
         Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
         Title="VJPlayer" Height="220" Width="530">
 
+
     <Window.Resources>
         <converters:DownloadConverter x:Key="DownloadConverter"></converters:DownloadConverter>
     </Window.Resources>

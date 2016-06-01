@@ -5,6 +5,8 @@ using System.Windows.Input;
 using VJPlayer.Commands.YouTubePickerCommands;
 using VJPlayer.Models;
 using VJPlayer.Views;
+using System.Windows;
+using VJPlayer.Interfaces;
 
 namespace VJPlayer.ViewModels
 {
@@ -81,6 +83,11 @@ namespace VJPlayer.ViewModels
             DownloadTemporary = new DownloadTemporaryCommand(view, model, LaunchVideo);
             Download = new DownloadCommand(view, model);
             view.ShowWindow();
+        }
+
+        public void SetOwner(Window window)
+        {
+            view.SetOwner(window);
         }
     }
 }

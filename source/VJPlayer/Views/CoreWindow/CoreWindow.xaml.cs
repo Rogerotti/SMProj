@@ -141,17 +141,6 @@ namespace VJPlayer.Views
             }
         }
 
-        private void LowerLoopSliderValueChanged(object sender, EventArgs e)
-        {
-            //TODO dolny loop, ustawienie
-        }
-
-        private void UpperLoopSliderValueChanged(object sender, EventArgs e)
-        {
-            //TODO gorny loop, ustawienie
-        }
-
-
         private void mediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
             var viewModel = (CoreWindowViewModel)DataContext;

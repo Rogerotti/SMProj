@@ -150,7 +150,7 @@ namespace VJPlayer.ViewModels
             this.view = view;
             this.view.DataContext = this;
             MediaModel = model;
-            SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, PlayAfter);
+            SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, playAfter);
             SpawnEffectPickerCommand = new SpawnEffectPickerCommand(MediaModel);
             MuteCommand = new MuteCommand(MediaModel);
             StopCommand = new StopCommand(MediaModel);
@@ -161,7 +161,7 @@ namespace VJPlayer.ViewModels
             ThumbDragStartedCommand = new SliderMiddleThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new SliderMiddleThumbDragCompletedCommand(MediaModel);
             ChangeVolumeCommand = new ChangeVolumeCommand(MediaModel);
-            ManageMediaEndEvent = new EventHandler(ManageMediaEnd);
+            ManageMediaEndEvent = new EventHandler(manageMediaEnd);
             MediaModel.Loop = true;
             Effects = new List<IEffectModel>();
             addEffects();
@@ -169,7 +169,7 @@ namespace VJPlayer.ViewModels
             view.ShowWindow();
         }
 
-        private void ManageMediaEnd(object sender, EventArgs args)
+        private void manageMediaEnd(object sender, EventArgs args)
         {      
             if (!MediaModel.Loop)
             {
@@ -178,7 +178,7 @@ namespace VJPlayer.ViewModels
             }   
         }
 
-        private void PlayAfter()
+        private void playAfter()
         {
             var mediaElement = view.Player;
             Uri uri;

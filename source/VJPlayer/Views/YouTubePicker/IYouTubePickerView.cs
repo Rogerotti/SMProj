@@ -1,10 +1,11 @@
 ﻿using Microsoft.Practices.Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using VJPlayer.Interfaces;
 
 namespace VJPlayer.Views
 {
-    public interface IYouTubePickerView : IView
+    public interface IYouTubePickerView : IView, IOwnable
     {
         /// <summary>
         /// Scieżka do pliku z youtube.

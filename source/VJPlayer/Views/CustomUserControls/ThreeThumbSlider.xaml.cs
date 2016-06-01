@@ -53,8 +53,6 @@ namespace VJPlayer.Views.CustomUserControls
 
             if (LowerSlider.Value > UpperSlider.Value)
                 LowerSlider.Value = UpperSlider.Value;
-
-            LowerValueChanged(this, e);
         }
 
         public void UpperSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -63,8 +61,6 @@ namespace VJPlayer.Views.CustomUserControls
 
             if (UpperSlider.Value < LowerSlider.Value)
                 LowerSlider.Value = UpperSlider.Value;
-
-            UpperValueChanged(this, e);
         }
 
         public void MiddleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

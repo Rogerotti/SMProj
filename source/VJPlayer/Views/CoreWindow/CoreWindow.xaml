@@ -125,12 +125,17 @@
 
             </ToggleButton>
 
-            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8"  UpperValue="{Binding MediaModel.TotalLength}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted"  LowerValueChanged="LowerLoopSliderValueChanged" UpperValueChanged="UpperLoopSliderValueChanged" MiddleValueChanged="SliderValueChanged" />
+            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8"  UpperValue="{Binding MediaModel.TotalLength}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted" MiddleValueChanged="SliderValueChanged" />
 
             <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="7" Grid.Row="1" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
             </ToggleButton>
 
             <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource DownloadConverter}">
+                        <Binding  ElementName="coreWindow" />
+                    </MultiBinding>
+                </Button.CommandParameter>
             </Button>
 
             <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}"  Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Width="40" Height="40">

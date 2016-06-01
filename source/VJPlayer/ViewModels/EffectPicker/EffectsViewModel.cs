@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Effects;
 using VJPlayer.Models;
 using System.Windows;
+using VJPlayer.Views;
 
 namespace VJPlayer.ViewModels
 {
@@ -22,16 +23,15 @@ namespace VJPlayer.ViewModels
             this.view.DataContext = this;
         }
 
-
         public void Initialize(IList<IEffectModel> effects, MediaElement element)
         {
             mediaElement = element;
             Effects = effects;
-            view.EffectChecked = ApplyEffects;
+            view.EffectChecked = applyEffects;
             view.ShowWindow();
         }
 
-        private void ApplyEffects()
+        private void applyEffects()
         {
             Grid grid = mediaElement.Parent as Grid;
             while (grid.Name != "EffectGrid")
@@ -54,9 +54,7 @@ namespace VJPlayer.ViewModels
                 grid2.Effect = activeEffects[i];
                 grid2 = grid2.Parent as Grid;
             }
-    
         }
-
 
         public void SetOwner(Window window)
         {
