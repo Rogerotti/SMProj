@@ -40,26 +40,29 @@ namespace VJPlayer.Commands.YouTubePickerCommands
             {
                 System.Windows.MessageBox.Show("Brak adresu youtube.");
                 return;
-            }
+            }   
 
             try
             {
                 view.ShowProgress(true);
+                string fileNameFromYouTubePath = GetYouTubeUniqueName(youtubePath);
 
-                var youTube = YouTube.Default;
-                YouTubeVideo video = await youTube.GetVideoAsync(youtubePath); // gets a Video object with info about the video
-                var downloadedFilePath = FileManager.GetTempFolderFilePath(video.FullName);
-
-                using (var stream = new FileStream(downloadedFilePath, FileMode.OpenOrCreate))
-                using (var writer = new BinaryWriter(stream))
+                var downloadedFilePath = FileManager.GetTempFolderFilePath(fileNameFromYouTubePath);
+                downloadedFilePath += "." + fileFormat;
+                if (!File.Exists(downloadedFilePath))
                 {
-                    var byteArray = await video.GetBytesAsync();
-                    await stream.WriteAsync(byteArray, 0, byteArray.Length);
+                    var youTube = YouTube.Default;
+                    YouTubeVideo video =  await youTube.GetVideoAsync(youtubePath); // gets a Video object with info about the video
+                    using (var stream = new FileStream(downloadedFilePath, FileMode.OpenOrCreate))
+                    using (var writer = new BinaryWriter(stream))
+                    {
+                        var byteArray = await video.GetBytesAsync();
+                        await stream.WriteAsync(byteArray, 0, byteArray.Length);
+                    }
+                    
+                    if (fileFormat != Format.mp4)
+                        mediaModel.ActualVideoPath = await ConvertFile(downloadedFilePath, fileFormat, true);
                 }
-
-                if (fileFormat != Format.mp4)
-                   mediaModel.ActualVideoPath = await ConvertFile(downloadedFilePath, fileFormat, true);
-
                 mediaModel.ActualVideoPath = downloadedFilePath;
                 PlayAfter.Invoke();
             }
@@ -97,6 +100,21 @@ namespace VJPlayer.Commands.YouTubePickerCommands
                 File.Delete(filePath);
 
             return newPath;
+        }
+
+        private String GetYouTubeUniqueName(String url)
+        {
+            if (String.IsNullOrWhiteSpace(url))
+                return String.Empty;
+
+            if (url.Contains("?v="))
+            {
+                var index = url.IndexOf("?v=");
+                return url.Substring(index + 3, 11);
+            }
+
+            return String.Empty;
+
         }
     }
 }
