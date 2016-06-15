@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VJPlayer.Views"
         mc:Ignorable="d"
-        Title="EffectPicker" Height="300" Width="300">
+        Background="#FF202020"
+        Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
+        Title="VJPlayer" Height="300" Width="200" ResizeMode="NoResize">
     <Grid>
-        <ListBox x:Name="effectsListBox" HorizontalAlignment="Left" Height="270" VerticalAlignment="Top" Width="292">
+        <ListBox x:Name="effectsListBox" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top" Width="185" Background="#FF202020">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="30" />
                         </Grid.ColumnDefinitions>
                         
-                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Name}" Background="{x:Null}" Foreground="White" />
                         <CheckBox Grid.Column="1" IsChecked="{Binding IsActive}" Click="CheckBoxClick" />
                     </Grid>
                 </DataTemplate>
