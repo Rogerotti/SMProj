@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Background="#FF202020"
         Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
-        Title="VJPlayer" Height="300" Width="200" ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Title="VJPlayer" Height="300" Width="210">
     <Grid>
-        <ListBox x:Name="effectsListBox" HorizontalAlignment="Left" Height="265" VerticalAlignment="Top" Width="185" Background="#FF202020">
+        <ListBox x:Name="effectsListBox" HorizontalAlignment="Left" Height="261" VerticalAlignment="Top" Width="194" Background="#FF202020">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">

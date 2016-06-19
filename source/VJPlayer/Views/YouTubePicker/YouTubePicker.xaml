@@ -10,6 +10,7 @@
         Background="#FF202020"
         x:Name="YouTubeWindow"
         Icon="/VJPlayer;component/Resources/Images/icon_256_256.png"
+        ResizeMode="NoResize"
         Title="VJPlayer" Height="220" Width="530">
 
 
