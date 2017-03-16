@@ -14,7 +14,6 @@ namespace VJPlayer.Models
         /// </summary>
         Double Volume { get; set; }
 
-
         String ActualVideoPath { get; set; }
 
         /// <summary>

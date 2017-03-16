@@ -6,17 +6,11 @@ using System.Windows.Threading;
 using System;
 using System.Windows.Input;
 using VJPlayer.Diagnostic;
-using VideoLibrary;
-using System.IO;
-using System.Security.Permissions;
-using VJPlayer.Managers;
-using EffectsLibrary.Effects;
 
 namespace VJPlayer.Views
 {
     public partial class CoreWindow : Window, ICoreWindowView
     {
-
         private DispatcherTimer timer;
 
         public MediaElement Player
@@ -27,14 +21,35 @@ namespace VJPlayer.Views
         public CoreWindow()
         {
             InitializeComponent();
+
             BindingErrorListener.Listen(m => MessageBox.Show(m));
 
-            Drop += CoreWindow_Drop;
-            MouseLeftButtonDown += CoreWindow_MouseLeftButtonDown;
+            Drop += CoreWindowDrop;
+            MouseLeftButtonDown += CoreWindowMouseLeftButtonDown;
+
+            //Ustawienie aktualizacji slidera co 100 ms
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
+
+            mediaElement.MediaOpened += (se, arg) =>
+            {
+                if (mediaElement.NaturalDuration.HasTimeSpan)
+                {
+                    var totalTime = mediaElement.NaturalDuration.TimeSpan;
+                    MediaTime.Text = String.Format("{0:00}:{1:00}", totalTime.Minutes, totalTime.Seconds);
+                    currentMediaTime.Text = "00:00";
+                }
+                else
+                    MediaTime.Text = "--:--";
+            };
+
+
+            mediaElement.MediaFailed += (se, arg) =>
+            {
+                int a = 5;
+            };
         }
 
         /// <summary>
@@ -45,11 +60,19 @@ namespace VJPlayer.Views
         private void UpdateSliderTick(object sender, EventArgs e)
         {
             var viewModel = (ICoreWindowViewModel)DataContext;
+
             if (viewModel == null)
                 return;
+
             object[] arrayOfObjects = new object[2];
             arrayOfObjects[0] = mediaElement;
             arrayOfObjects[1] = slider;
+
+            if (viewModel.MediaModel.State == Models.MediaModelState.Playing)
+            {
+                var currentTimeElapsed = mediaElement.Position;
+                currentMediaTime.Text = String.Format("{0:00}:{1:00}", currentTimeElapsed.Minutes, currentTimeElapsed.Seconds);
+            }
 
             if (viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))
                 viewModel.SliderUpdateCommand.Execute(arrayOfObjects);
@@ -58,7 +81,7 @@ namespace VJPlayer.Views
         /// <summary
         /// >Obsługa drag'n'drop, przekazuje Uri przeciągniętego pliku do mediaElement.
         /// </summary>
-        private void CoreWindow_Drop(object sender, DragEventArgs e)
+        private void CoreWindowDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -68,25 +91,27 @@ namespace VJPlayer.Views
                 // Na razie pobranie tylko jednego z przeciągniętych plików
                 // ToDo: pobierać całą tablicę i w foreachu jakoś to tam układać do listy czy coś
                 var filePath = files[0];
+
                 // Utworzenie URI z ścieżki do pliku
                 Uri uri;
-                System.Uri.TryCreate(filePath, System.UriKind.Absolute, out uri);
+                Uri.TryCreate(filePath, UriKind.Absolute, out uri);
+                mediaElement.Source = null;
                 mediaElement.Source = uri;
+
                 var viewModel = (CoreWindowViewModel)DataContext;
 
                 if (viewModel.PlayCommand.CanExecute(mediaElement))
                     viewModel.PlayCommand.Execute(mediaElement);
             }
+
             CommandManager.InvalidateRequerySuggested();
             Focus();
-   
         }
-
 
         /// <summary>
         /// Umożliwia przeciąganie okna bez ramek lewym przyciskiem myszy
         /// </summary>
-        private void CoreWindow_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void CoreWindowMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             try
             {
