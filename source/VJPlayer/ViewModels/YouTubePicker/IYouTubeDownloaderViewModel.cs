@@ -12,6 +12,7 @@ namespace VJPlayer.ViewModels
     public interface IYouTubeDownloaderViewModel : IOwnable
     {
         Action LaunchVideo { get; set; }
+
         /// <summary>
         /// Pobiera plik z youtube tymczasowo do momentu zamknięcia aplikacji.
         /// </summary>

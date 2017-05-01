@@ -62,6 +62,10 @@
             Foreground="White"
             Text="Drop content here"
             />
+        
+        <TextBlock x:Name="SubtitlesTextBlock" Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="20" Text="" FontSize="12" Foreground="White" Panel.ZIndex="255">
+
+        </TextBlock>
 
         <Grid x:Name="EffectGrid">
 
@@ -91,12 +95,12 @@
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="40" />
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
 
 
@@ -111,26 +115,19 @@
                 <!--todo: wrzucic <Image> </Image>-->
             </Button>
 
-            <Button x:Name="nextButton" Content="Next" Grid.Row="1" Grid.Column="4" Width="40" Height="40">
+            <Button x:Name="stopButton" Content="Stop" Grid.Row="1" Grid.Column="2" Width="40" Height="40" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" >
             </Button>
 
-            <Button x:Name="previousButton" Content="Prev" Grid.Row="1" Grid.Column="2" Width="40" Height="40" >
-            </Button>
-
-
-            <Button x:Name="stopButton" Content="Stop" Grid.Row="1" Grid.Column="3" Width="40" Height="40" Command="{Binding Path=StopCommand}" CommandParameter="{Binding ElementName=mediaElement}" >
-            </Button>
-
-            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" IsChecked="{Binding MediaModel.Loop, Mode=TwoWay}" Grid.Row="1" Grid.Column="5"  Width="40" Height="40" >
+            <ToggleButton x:Name="loopButton" Content="Loop" Command="{Binding Path=LoopCommand}" IsChecked="{Binding MediaModel.Loop, Mode=TwoWay}" Grid.Row="1" Grid.Column="3"  Width="40" Height="40" >
 
             </ToggleButton>
 
-            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8"  UpperValue="{Binding MediaModel.TotalLength}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted" MiddleValueChanged="SliderValueChanged" />
+            <uc:ThreeThumbSlider x:Name="slider" MiddleValue="0" LowerValue="0"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="10"  UpperValue="{Binding MediaModel.TotalLength}" LowerSliderDragStarted="LowerSliderDragStarted" LowerSliderDragCompleted="LowerSliderDragCompleted"  MiddleSliderDragCompleted="sliderMiddleSliderDragCompleted" MiddleSliderDragStarted="sliderMiddleSliderDragStarted" MiddleValueChanged="SliderValueChanged" />
 
-            <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="7" Grid.Row="1" Width="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
+            <ToggleButton x:Name="muteButton" Content="Mute" Grid.Column="8" Grid.Row="1" Width="40" Height="40" Command="{Binding Path=MuteCommand}" CommandParameter="{Binding ElementName=mediaElement}">
             </ToggleButton>
 
-            <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="2"  Width="40" Height="40" >
+            <Button x:Name="subtitlesButton"  Content="SB" Command="{Binding Path=SpawnSubtitlesPicker}"  Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="1"  Width="40" Height="40" >
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
                         <Binding  ElementName="coreWindow" />
@@ -138,7 +135,15 @@
                 </Button.CommandParameter>
             </Button>
 
-            <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}"  Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" Width="40" Height="40">
+            <Button x:Name="youtubeButton"  Content="YT" Command="{Binding Path=SpawnYouTubePickerCommand}"  Grid.Row="1" Grid.Column="6" Grid.ColumnSpan="1"  Width="40" Height="40" >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource DownloadConverter}">
+                        <Binding  ElementName="coreWindow" />
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+
+            <Button x:Name="effectsButton" Content="FX" Command="{Binding Path=SpawnEffectPickerCommand}"  Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="1" Width="40" Height="40">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
                         <Binding  ElementName="mediaElement"/>
@@ -149,7 +154,7 @@
             </Button>
             
             <Slider
-                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged"  Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Margin="5">
+                HorizontalContentAlignment="Right" Value="{Binding MediaModel.Volume, Mode=TwoWay}" Minimum="0" Maximum="1" TickFrequency="0.01" ValueChanged="VolumeValueChanged"  Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="2"  VerticalAlignment="Center" Margin="5">
                 
             </Slider>
             

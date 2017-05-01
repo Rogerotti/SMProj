@@ -6,12 +6,15 @@ using System.Windows.Threading;
 using System;
 using System.Windows.Input;
 using VJPlayer.Diagnostic;
+using System.Globalization;
+using System.Windows.Media;
 
 namespace VJPlayer.Views
 {
     public partial class CoreWindow : Window, ICoreWindowView
     {
         private DispatcherTimer timer;
+        private DispatcherTimer subtitlesTimer;
 
         public MediaElement Player
         {
@@ -33,6 +36,11 @@ namespace VJPlayer.Views
             timer.Tick += UpdateSliderTick; ;
             timer.Start();
 
+            subtitlesTimer = new DispatcherTimer();
+            subtitlesTimer.Interval = TimeSpan.FromMilliseconds(200);
+            subtitlesTimer.Tick += SubtitlesTimerTick;
+            subtitlesTimer.Start();
+
             mediaElement.MediaOpened += (se, arg) =>
             {
                 if (mediaElement.NaturalDuration.HasTimeSpan)
@@ -45,12 +53,58 @@ namespace VJPlayer.Views
                     MediaTime.Text = "--:--";
             };
 
-
             mediaElement.MediaFailed += (se, arg) =>
             {
                 int a = 5;
             };
         }
+
+        // Odświeża napisy
+        private void SubtitlesTimerTick(Object sender, EventArgs e)
+        {
+            var viewModel = (ICoreWindowViewModel)DataContext;
+
+            if (viewModel == null)
+                return;
+            if (viewModel.MediaModel.State == Models.MediaModelState.Playing &&viewModel.MediaModel.Subtitles != null && viewModel.MediaModel.Subtitles.CurrentSubtitles != null && viewModel.MediaModel.Subtitles.SubtitlesEnable)
+            {
+                if (viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex == 0) viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex++;
+                var currentTime = mediaElement.Position.TotalSeconds;
+                var index = viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex;
+                var currentSubtitles = viewModel.MediaModel.Subtitles.CurrentSubtitles[index];
+                var font = viewModel.MediaModel.Subtitles.SubtitlesFont;
+                if (SubtitlesTextBlock.FontSize != font) SubtitlesTextBlock.FontSize = font;
+                var color = viewModel.MediaModel.Subtitles.SubtitlesColor;
+                if (SubtitlesTextBlock.Foreground != new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B))) {
+                    SubtitlesTextBlock.Foreground = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+                }
+                var timeScale = Double.Parse(viewModel.MediaModel.Subtitles.CurrentSubtitles[0].Text, CultureInfo.InvariantCulture);
+                if (currentSubtitles.StartTime / timeScale <= currentTime) {
+                    if (currentSubtitles.EndTime / timeScale >= currentTime)
+                    {
+                        SubtitlesTextBlock.Text = currentSubtitles.Text;
+                    }
+                    else {
+                        while ((viewModel.MediaModel.Subtitles.CurrentSubtitles.Count >= index - 1 && currentSubtitles.EndTime / timeScale <= currentTime))
+                        {
+                            viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex++;
+                            index++;
+                            currentSubtitles = viewModel.MediaModel.Subtitles.CurrentSubtitles[index];
+                        }
+                        viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex++;
+                        SubtitlesTextBlock.Text = "";
+                    }
+                }
+
+                while ((index > 1 && currentSubtitles.StartTime / timeScale > currentTime)) {
+                    viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex--;
+                    index--;
+                    currentSubtitles = viewModel.MediaModel.Subtitles.CurrentSubtitles[index];
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// Aktualizuje położenie paska stanu odtwarzanego materiału.

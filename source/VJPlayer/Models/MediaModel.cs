@@ -8,6 +8,7 @@ namespace VJPlayer.Models
         private double volume = 0.5;
         private double totalLength = 100;
         private MediaModelState state;
+        private ISubtitlesModel subtitlesModel;
 
         public int LowerThumbValue;
 
@@ -23,10 +24,7 @@ namespace VJPlayer.Models
         /// </summary>
         public Double Volume
         {
-            get
-            {
-                return volume;
-            }
+            get{ return volume; }
             set
             {
                 if (volume != value)
@@ -42,10 +40,7 @@ namespace VJPlayer.Models
         /// </summary>
         public Double TotalLength
         {
-            get
-            {
-                return totalLength;
-            }
+            get { return totalLength; }
             set
             {
                 if (totalLength != value)
@@ -60,15 +55,25 @@ namespace VJPlayer.Models
 
         public MediaModelState State
         {
-            get
-            {
-                return state;
-            }
+            get  { return state; }
             set
             {
                 if (state != value)
                 {
                     state = value;
+                    NotifyPropertyChanged(nameof(State));
+                }
+            }
+        }
+
+        public ISubtitlesModel Subtitles
+        {
+            get { return subtitlesModel; }
+            set
+            {
+                if (subtitlesModel != value)
+                {
+                    subtitlesModel = value;
                     NotifyPropertyChanged(nameof(State));
                 }
             }

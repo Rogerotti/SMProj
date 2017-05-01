@@ -1,15 +1,13 @@
 ﻿using EffectsLibrary.Effects;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using VJPlayer.Commands;
 using VJPlayer.Commands.MediaCommands;
-using VJPlayer.Managers;
 using VJPlayer.Models;
 using VJPlayer.Views;
-using Microsoft.Practices.Unity;
+using System.Windows.Media;
 
 namespace VJPlayer.ViewModels
 {
@@ -30,6 +28,7 @@ namespace VJPlayer.ViewModels
         private ICommand thumbDragCompletedCommand;
         private ICommand sliderUpdateCommand;
         private ICommand thumbDragStartedCommand;
+        private ICommand spawnSubtitlesPicker;
         private ICommand loopCommand;
         private ICommand changeVolumeCommand;
         private ICommand spawnYouTubePickerCommand;
@@ -42,6 +41,16 @@ namespace VJPlayer.ViewModels
             {
                 changeVolumeCommand = value;
                 OnPropertyChanged(nameof(ChangeVolumeCommand));
+            }
+        }
+
+        public ICommand SpawnSubtitlesPicker
+        {
+            get { return spawnSubtitlesPicker; }
+            set
+            {
+                spawnSubtitlesPicker = value;
+                OnPropertyChanged(nameof(SpawnSubtitlesPicker));
             }
         }
 
@@ -149,6 +158,13 @@ namespace VJPlayer.ViewModels
         {
             this.view = view;
             this.view.DataContext = this;
+            model.Subtitles = new SubtitlesModel
+            {
+                SubtitlesEnable = false,
+                SubtitlesColor = Color.FromRgb(255, 255, 255),
+                SubtitlesFont = 12,
+                CurrentSubtitlesPlayingIndex = 0
+            };
             MediaModel = model;
             SpawnYouTubePickerCommand = new SpawnYouTubePickerCommand(MediaModel, playAfter);
             SpawnEffectPickerCommand = new SpawnEffectPickerCommand(MediaModel);
@@ -161,6 +177,7 @@ namespace VJPlayer.ViewModels
             ThumbDragStartedCommand = new SliderMiddleThumbDragStartedCommand(MediaModel);
             ThumbDragCompletedCommand = new SliderMiddleThumbDragCompletedCommand(MediaModel);
             ChangeVolumeCommand = new ChangeVolumeCommand(MediaModel);
+            SpawnSubtitlesPicker = new SpawnSubtitlesPicker(MediaModel);
             ManageMediaEndEvent = new EventHandler(manageMediaEnd);
             MediaModel.Loop = true;
             Effects = new List<IEffectModel>();
@@ -169,7 +186,7 @@ namespace VJPlayer.ViewModels
             view.ShowWindow();
         }
 
-        private void manageMediaEnd(object sender, EventArgs args)
+        private void manageMediaEnd(Object sender, EventArgs args)
         {      
             if (!MediaModel.Loop)
             {

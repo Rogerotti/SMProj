@@ -10,6 +10,11 @@ namespace VJPlayer.Models
         MediaModelState State { get; set; }
 
         /// <summary>
+        /// Podstawowe ustawienia dla napisów.
+        /// </summary>
+        ISubtitlesModel Subtitles { get; set; }
+
+        /// <summary>
         /// Dźwięk odtwarzanego elementu. Przyjmuje wartości od 0 - 1.
         /// </summary>
         Double Volume { get; set; }
