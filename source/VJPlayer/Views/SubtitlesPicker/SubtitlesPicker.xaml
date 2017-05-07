@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:VJPlayer.Views.SubtitlesPicker"
         xmlns:converters="clr-namespace:VJPlayer.Converters"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         Background="#FF202020"
         x:Name="SubtitleWindow"
@@ -56,9 +57,11 @@
            
             <xctk:ColorPicker Grid.Column="3" Name="ColorPickerBackground" SelectedColorChanged="ColorPickerBackgroundSelectedColorChanged" Width="200" Margin="5" Height="25"  ></xctk:ColorPicker>
             <CheckBox x:Name="SubtitlesEnableCheckBox" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"  Height="20" Content="Subtitles enable" Foreground="#FF0080FF"/>
+            <Label x:Name="SubtitlesLoadingMessageLabel" Grid.Column="3" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,50,0" Foreground="Red"/>
         </Grid>
 
         <Grid Grid.Row="2">
+            <Controls:ProgressRing  Grid.Row="2" Name="progressRing" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40,0,0,0" Foreground="#FF0080FF" IsActive="False"></Controls:ProgressRing>
             <Button Height="25" Width="100" Margin="0,0,100,0" Command="{Binding Path=LoadSubtitles}" Click="LoadSubtitlesClick" Content="Load Subtitles" >
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource DownloadConverter}">
@@ -69,7 +72,8 @@
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
-            <Button Height="25" Width="50" Margin="100,0,0,0" Content="Cancel"></Button>
+            <Button Height="25" Width="50" Margin="100,0,0,0" Content="Cancel" Command="{Binding Path=CloseWindowCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+  
         </Grid>
     </Grid>
 </Window>

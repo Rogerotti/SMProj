@@ -65,7 +65,7 @@ namespace VJPlayer.Views.SubtitlesPicker
         {
             var dialog = new OpenFileDialog();
             var result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK && dialog.FileName.Contains(".txt"))
+            if (result == System.Windows.Forms.DialogResult.OK)
             {
                 SubtitlesPathTextBox.Text = dialog.FileName;
                 List<SubtitlesLine> subtitles = new List<SubtitlesLine>();
@@ -140,6 +140,26 @@ namespace VJPlayer.Views.SubtitlesPicker
         private void ColorPickerBackgroundSelectedColorChanged(Object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             currentFontCollor = e.NewValue == null ? Color.FromRgb(0, 0, 0) : (Color)e.NewValue;
+        }
+
+        public void ShowSubtitlesLoadFailed(String message)
+        {
+            progressRing.IsActive = false;
+            SubtitlesLoadingMessageLabel.Foreground = Brushes.Red;
+            SubtitlesLoadingMessageLabel.Content = message;
+        }
+
+        public void ShowSubtitlesLoadSuccess(String message)
+        {
+            progressRing.IsActive = false;
+            SubtitlesLoadingMessageLabel.Content = message;
+            SubtitlesLoadingMessageLabel.Foreground = Brushes.Green;
+        }
+
+        public void ShowSubtitlesLoading()
+        {
+            progressRing.IsActive = true;
+            SubtitlesLoadingMessageLabel.Content = "";
         }
     }
 }

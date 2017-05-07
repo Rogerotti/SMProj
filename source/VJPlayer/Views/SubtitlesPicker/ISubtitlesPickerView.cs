@@ -30,6 +30,12 @@ namespace VJPlayer.Views.SubtitlesPicker
         /// </summary>
         Color SubtitlesFontColor { get; set; }
 
+        void ShowSubtitlesLoadFailed(String message);
+
+        void ShowSubtitlesLoading();
+
+        void ShowSubtitlesLoadSuccess(String message);
+
         void ShowWindow();
     }
 }

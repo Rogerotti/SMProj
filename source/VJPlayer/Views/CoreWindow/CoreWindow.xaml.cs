@@ -45,9 +45,9 @@ namespace VJPlayer.Views
             {
                 if (mediaElement.NaturalDuration.HasTimeSpan)
                 {
-                    var totalTime = mediaElement.NaturalDuration.TimeSpan;
-                    MediaTime.Text = String.Format("{0:00}:{1:00}", totalTime.Minutes, totalTime.Seconds);
-                    currentMediaTime.Text = "00:00";
+                    var totalTime = mediaElement.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss");
+                    MediaTime.Text = totalTime;
+                    currentMediaTime.Text = "00:00:00";
                 }
                 else
                     MediaTime.Text = "--:--";
@@ -55,7 +55,7 @@ namespace VJPlayer.Views
 
             mediaElement.MediaFailed += (se, arg) =>
             {
-                int a = 5;
+                Console.WriteLine(arg.ErrorException);
             };
         }
 
@@ -124,8 +124,8 @@ namespace VJPlayer.Views
 
             if (viewModel.MediaModel.State == Models.MediaModelState.Playing)
             {
-                var currentTimeElapsed = mediaElement.Position;
-                currentMediaTime.Text = String.Format("{0:00}:{1:00}", currentTimeElapsed.Minutes, currentTimeElapsed.Seconds);
+                var currentTimeElapsed = mediaElement.Position.ToString(@"hh\:mm\:ss");
+                currentMediaTime.Text = currentTimeElapsed;
             }
 
             if (viewModel.SliderUpdateCommand.CanExecute(arrayOfObjects))

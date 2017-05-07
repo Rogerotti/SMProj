@@ -36,7 +36,7 @@ namespace VJPlayer.ViewModels
 
             mediaModel = model;
             view.ShowWindow();
-            LoadSubtitles = new LoadSubtitlesCommand(model);
+            LoadSubtitles = new LoadSubtitlesCommand(view, model);
             view.SubtitlesEnable = mediaModel.Subtitles.SubtitlesEnable;
             view.SubtitlesFontSize = mediaModel.Subtitles.SubtitlesFont;
             view.SubtitlesFontColor = mediaModel.Subtitles.SubtitlesColor;
