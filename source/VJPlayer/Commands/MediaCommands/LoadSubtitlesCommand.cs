@@ -49,7 +49,7 @@ namespace VJPlayer.Commands.MediaCommands
                             Int32 timeStart;
                             Int32 timeEnd;
                             String text;
-                            string timePattern = @"{(.*?)}";
+                            string timePattern = @"{(.*?)}|\[(.*?)\]";
                             string textPattern = @"[^}]*$";
 
                             var time = Regex.Matches(line, timePattern)

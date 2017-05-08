@@ -66,6 +66,7 @@ namespace VJPlayer.Views
 
             if (viewModel == null)
                 return;
+
             if (viewModel.MediaModel.State == Models.MediaModelState.Playing &&viewModel.MediaModel.Subtitles != null && viewModel.MediaModel.Subtitles.CurrentSubtitles != null && viewModel.MediaModel.Subtitles.SubtitlesEnable)
             {
                 if (viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex == 0) viewModel.MediaModel.Subtitles.CurrentSubtitlesPlayingIndex++;
@@ -78,7 +79,12 @@ namespace VJPlayer.Views
                 if (SubtitlesTextBlock.Foreground != new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B))) {
                     SubtitlesTextBlock.Foreground = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
                 }
-                var timeScale = Double.Parse(viewModel.MediaModel.Subtitles.CurrentSubtitles[0].Text, CultureInfo.InvariantCulture);
+                double timeScale = 10f;
+
+                if (!Double.TryParse(viewModel.MediaModel.Subtitles.CurrentSubtitles[0].Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out timeScale))
+                    timeScale = 10f;
+
+                if (timeScale <= 0) timeScale = 10f;
                 if (currentSubtitles.StartTime / timeScale <= currentTime) {
                     if (currentSubtitles.EndTime / timeScale >= currentTime)
                     {

@@ -79,7 +79,7 @@ namespace VJPlayer.Views.SubtitlesPicker
                             Int32 timeStart;
                             Int32 timeEnd;
                             String text;
-                            string timePattern = @"{(.*?)}";
+                            string timePattern = @"{(.*?)}|\[(.*?)\]";
                             string textPattern = @"[^}]*$";
                             // Instantiate the regular expression object.
                             var time = Regex.Matches(line, timePattern)
@@ -105,6 +105,7 @@ namespace VJPlayer.Views.SubtitlesPicker
                 // if (result == System.Windows.Forms.DialogResult.OK || result == System.Windows.Forms.DialogResult.Yes)
                 //  Directory.Text = dialog.SelectedPath;
             }
+            var a = 5;
 
 
         }
