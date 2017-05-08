@@ -51,7 +51,7 @@ namespace VJPlayer.Commands.MediaCommands
                             String text;
                             string timePattern = @"{(.*?)}|\[(.*?)\]";
                             string textPattern = @"[^}]*$";
-
+                            if (line[0] == '[') textPattern = @"[^\]]*$";
                             var time = Regex.Matches(line, timePattern)
                                         .Cast<Match>()
                                         .ToArray();
